@@ -50,10 +50,10 @@ pkgbase = grub-debian
 	backup = etc/default/grub
 	backup = etc/grub.d/40_custom
 	source = git+https://git.savannah.gnu.org/git/grub.git#tag=grub-2.04?signed
-	source = git+https://git.savannah.gnu.org/git/grub-extras.git#commit=136763a4cc9ca3a4f59d05b79eede2159d6f441e
-	source = git+https://git.savannah.gnu.org/git/gnulib.git#commit=9ce9be2ef0cb1180e35dfe9dfbbe90d774b374bd
-	source = https://ftp.gnu.org/gnu/unifont/unifont-12.1.02/unifont-12.1.02.bdf.gz
-	source = https://ftp.gnu.org/gnu/unifont/unifont-12.1.02/unifont-12.1.02.bdf.gz.sig
+	source = git+https://git.savannah.gnu.org/git/grub-extras.git#commit=8a245d5c1800627af4cefa99162a89c7a46d8842
+	source = git+https://git.savannah.gnu.org/git/gnulib.git#commit=be584c56eb1311606e5ea1a36363b97bddb6eed3
+	source = https://ftp.gnu.org/gnu/unifont/unifont-12.1.03/unifont-12.1.03.bdf.gz
+	source = https://ftp.gnu.org/gnu/unifont/unifont-12.1.03/unifont-12.1.03.bdf.gz.sig
 	source = 0003-10_linux-detect-archlinux-initramfs.patch
 	source = 0004-add-GRUB_COLOR_variables.patch
 	source = grub.default
@@ -123,7 +123,7 @@ pkgbase = grub-debian
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
-	sha256sums = 04d652be1e28a6d464965c75c71ac84633085cd0960c2687466651c34c94bd89
+	sha256sums = 6067bda8daa1f3c49d8876107992e19fc9ab905ad54c01c3131b9649977c3746
 	sha256sums = SKIP
 	sha256sums = 8dc5e5fe0dba842127cec88046cf505cdda08859d30acc18e4f72149d45bcdb2
 	sha256sums = 01b8d51914c4cd9914030b124e57097c1dc153d5cbad031a00470e891d5055db

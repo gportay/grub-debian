@@ -10,9 +10,9 @@ _IA32_EFI_IN_ARCH_X64="1"
 ## "1" to enable EMU build, "0" to disable
 _GRUB_EMU_BUILD="0"
 
-_GRUB_EXTRAS_COMMIT="136763a4cc9ca3a4f59d05b79eede2159d6f441e"
-_GNULIB_COMMIT="9ce9be2ef0cb1180e35dfe9dfbbe90d774b374bd"
-_UNIFONT_VER="12.1.02"
+_GRUB_EXTRAS_COMMIT="8a245d5c1800627af4cefa99162a89c7a46d8842"
+_GNULIB_COMMIT="be584c56eb1311606e5ea1a36363b97bddb6eed3"
+_UNIFONT_VER="12.1.03"
 
 [[ "${CARCH}" == "x86_64" ]] && _EFI_ARCH="x86_64"
 [[ "${CARCH}" == "i686" ]] && _EFI_ARCH="i386"
@@ -130,7 +130,7 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
 sha256sums=('SKIP'
             'SKIP'
             'SKIP'
-            '04d652be1e28a6d464965c75c71ac84633085cd0960c2687466651c34c94bd89'
+            '6067bda8daa1f3c49d8876107992e19fc9ab905ad54c01c3131b9649977c3746'
             'SKIP'
             '8dc5e5fe0dba842127cec88046cf505cdda08859d30acc18e4f72149d45bcdb2'
             '01b8d51914c4cd9914030b124e57097c1dc153d5cbad031a00470e891d5055db'
@@ -331,6 +331,9 @@ prepare() {
 	./bootstrap \
 		--gnulib-srcdir="${srcdir}/gnulib/" \
 		--no-git
+
+	echo "Make translations reproducible..."
+	sed -i '1i /^PO-Revision-Date:/ d' po/*.sed
 }
 
 _build_grub-common_and_bios() {
@@ -365,6 +368,11 @@ _build_grub-common_and_bios() {
 		"${_EFIEMU}" \
 		--enable-boot-time \
 		"${_configure_options[@]}"
+
+	if [ ! -z "${SOURCE_DATE_EPOCH}" ]; then
+		echo "Make info pages reproducible..."
+		touch -d "@${SOURCE_DATE_EPOCH}" $(find -name '*.texi')
+	fi
 
 	echo "Run make for bios build..."
 	make
