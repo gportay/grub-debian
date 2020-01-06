@@ -55,6 +55,7 @@ series:
 	$(MAKE) wget_$@
 
 .PHONY: clean
+clean:
 	rm -f PKGBUILD.import series
 
 wget_%:
