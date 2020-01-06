@@ -24,7 +24,7 @@ pkgname='grub-debian'
 pkgdesc='GNU GRand Unified Bootloader (2) with patches from Debian'
 _pkgver=2.04
 pkgver=${_pkgver/-/}
-pkgrel=4
+pkgrel=5
 epoch=2
 url='https://www.gnu.org/software/grub/'
 arch=('x86_64')
@@ -125,7 +125,8 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         'efi-variable-storage-minimise-writes.patch'
         'no-devicetree-if-secure-boot.patch'
         'grub-install-removable-shim.patch'
-        'sparc64-fix-bios-boot-partition-support.patch')
+        'sparc64-fix-bios-boot-partition-support.patch'
+        'verifiers-blocklist-fallout.patch')
 
 sha256sums=('SKIP'
             'SKIP'
@@ -194,7 +195,8 @@ sha256sums=('SKIP'
             '60b863fc2f0f31638776e99a4ae4e76266baeff028c9a57a02ee3694c00f4ee2'
             '5d4db6cbc02751e970239ad51386da91e02b9ecdf374abe7c780dc468d5df125'
             '52c7616be60005deeffd52026bd38621a60873d7dfd3992307ebda5402114624'
-            '3882060cf638e67cbf654bf0878c64110637de7b5ba0db6ccc13345c1391c2a8')
+            '3882060cf638e67cbf654bf0878c64110637de7b5ba0db6ccc13345c1391c2a8'
+            '41143ef98ea063e7f6ba1415cac2ce238fe5cc1a1863348f9e735565bbf1ec2b')
 
 _backports=(
 	# grub-mkconfig: Use portable "command -v" to detect installed programs
@@ -297,6 +299,7 @@ prepare() {
 	patch -Np1 -i "${srcdir}/no-devicetree-if-secure-boot.patch"
 	patch -Np1 -i "${srcdir}/grub-install-removable-shim.patch"
 	patch -Np1 -i "${srcdir}/sparc64-fix-bios-boot-partition-support.patch"
+	patch -Np1 -i "${srcdir}/verifiers-blocklist-fallout.patch"
 
 	echo "Revert patch that handle the Debian kernel version numbers..."
 	patch -Rp1 -i "${srcdir}/dpkg-version-comparison.patch"

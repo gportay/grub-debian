@@ -1,4 +1,4 @@
-BRANCH ?= debian/2.04-4
+BRANCH ?= debian/2.04-5
 DIFFTOOL ?= $(shell git config --get diff.tool || echo vimdiff)
 
 .PHONY: all
