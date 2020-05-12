@@ -7,7 +7,7 @@ DIFFTOOL ?= $(shell git config --get diff.tool || echo vimdiff)
 all: .SRCINFO
 
 .PHONY: .SRCINFO
-.SRCINFO:
+.SRCINFO: updpkgsums
 	makepkg --printsrcinfo >$@
 
 .PHONY: repackage
@@ -22,9 +22,14 @@ nobuild:
 build:
 	makepkg --cleanbuild --force
 
+.PHONY: updpkgsums
+updpkgsums:
+	updpkgsums
+
 .PHONY: import
 import: PKGBUILD.import
 	$(DIFFTOOL) $< PKGBUILD
+	$(MAKE) updpkgsums
 
 .PHONY: PKGBUILD.import
 .SILENT: PKGBUILD.import
