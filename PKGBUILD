@@ -66,67 +66,67 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         '0003-10_linux-detect-archlinux-initramfs.patch'
         '0004-add-GRUB_COLOR_variables.patch'
         'grub.default'
-        'olpc-prefix-hack.patch'
-        'core-in-fs.patch'
-        'dpkg-version-comparison.patch'
-        'grub-legacy-0-based-partitions.patch'
-        'disable-floppies.patch'
-        'grub.cfg-400.patch'
-        'gfxpayload-keep-default.patch'
-        'install-stage2-confusion.patch'
-        'mkrescue-efi-modules.patch'
-        'mkconfig-loopback.patch'
-        'restore-mkdevicemap.patch'
-        'gettext-quiet.patch'
-        'install-efi-fallback.patch'
-        'mkconfig-ubuntu-recovery.patch'
-        'install-locale-langpack.patch'
-        'mkconfig-nonexistent-loopback.patch'
-        'no-insmod-on-sb.patch'
-        'default-grub-d.patch'
-        'blacklist-1440x900x32.patch'
-        'uefi-firmware-setup.patch'
-        'mkconfig-ubuntu-distributor.patch'
-        'linuxefi.patch'
-        'mkconfig-signed-kernel.patch'
-        'install-signed.patch'
-        'sleep-shift.patch'
-        'wubi-no-windows.patch'
-        'maybe-quiet.patch'
-        'install-efi-adjust-distributor.patch'
-        'quick-boot.patch'
-        'quick-boot-lvm.patch'
-        'gfxpayload-dynamic.patch'
-        'vt-handoff.patch'
-        'probe-fusionio.patch'
-        'ignore-grub_func_test-failures.patch'
-        'mkconfig-recovery-title.patch'
-        'install-powerpc-machtypes.patch'
-        'ieee1275-clear-reset.patch'
-        'ppc64el-disable-vsx.patch'
-        'grub-install-pvxen-paths.patch'
-        'insmod-xzio-and-lzopio-on-xen.patch'
-        'grub-install-extra-removable.patch'
-        'mkconfig-other-inits.patch'
-        'zpool-full-device-name.patch'
-        'net-read-bracketed-ipv6-addr.patch'
-        'bootp-new-net_bootp6-command.patch'
-        'efinet-uefi-ipv6-pxe-support.patch'
-        'bootp-process-dhcpack-http-boot.patch'
-        'efinet-set-network-from-uefi-devpath.patch'
-        'efinet-set-dns-from-uefi-proto.patch'
-        'fix-lockdown.patch'
-        'skip-grub_cmd_set_date.patch'
-        'bash-completion-drop-have-checks.patch'
-        'at_keyboard-module-init.patch'
-        'uefi-secure-boot-cryptomount.patch'
-        'vsnprintf-upper-case-hex.patch'
-        'efi-variable-storage-minimise-writes.patch'
-        'no-devicetree-if-secure-boot.patch'
-        'grub-install-removable-shim.patch'
-        'sparc64-fix-bios-boot-partition-support.patch'
-        'verifiers-blocklist-fallout.patch'
-        'btrfs-raid1c34.patch')
+        'debian-olpc-prefix-hack.patch'
+        'debian-core-in-fs.patch'
+        'debian-dpkg-version-comparison.patch'
+        'debian-grub-legacy-0-based-partitions.patch'
+        'debian-disable-floppies.patch'
+        'debian-grub.cfg-400.patch'
+        'debian-gfxpayload-keep-default.patch'
+        'debian-install-stage2-confusion.patch'
+        'debian-mkrescue-efi-modules.patch'
+        'debian-mkconfig-loopback.patch'
+        'debian-restore-mkdevicemap.patch'
+        'debian-gettext-quiet.patch'
+        'debian-install-efi-fallback.patch'
+        'debian-mkconfig-ubuntu-recovery.patch'
+        'debian-install-locale-langpack.patch'
+        'debian-mkconfig-nonexistent-loopback.patch'
+        'debian-no-insmod-on-sb.patch'
+        'debian-default-grub-d.patch'
+        'debian-blacklist-1440x900x32.patch'
+        'debian-uefi-firmware-setup.patch'
+        'debian-mkconfig-ubuntu-distributor.patch'
+        'debian-linuxefi.patch'
+        'debian-mkconfig-signed-kernel.patch'
+        'debian-install-signed.patch'
+        'debian-sleep-shift.patch'
+        'debian-wubi-no-windows.patch'
+        'debian-maybe-quiet.patch'
+        'debian-install-efi-adjust-distributor.patch'
+        'debian-quick-boot.patch'
+        'debian-quick-boot-lvm.patch'
+        'debian-gfxpayload-dynamic.patch'
+        'debian-vt-handoff.patch'
+        'debian-probe-fusionio.patch'
+        'debian-ignore-grub_func_test-failures.patch'
+        'debian-mkconfig-recovery-title.patch'
+        'debian-install-powerpc-machtypes.patch'
+        'debian-ieee1275-clear-reset.patch'
+        'debian-ppc64el-disable-vsx.patch'
+        'debian-grub-install-pvxen-paths.patch'
+        'debian-insmod-xzio-and-lzopio-on-xen.patch'
+        'debian-grub-install-extra-removable.patch'
+        'debian-mkconfig-other-inits.patch'
+        'debian-zpool-full-device-name.patch'
+        'debian-net-read-bracketed-ipv6-addr.patch'
+        'debian-bootp-new-net_bootp6-command.patch'
+        'debian-efinet-uefi-ipv6-pxe-support.patch'
+        'debian-bootp-process-dhcpack-http-boot.patch'
+        'debian-efinet-set-network-from-uefi-devpath.patch'
+        'debian-efinet-set-dns-from-uefi-proto.patch'
+        'debian-fix-lockdown.patch'
+        'debian-skip-grub_cmd_set_date.patch'
+        'debian-bash-completion-drop-have-checks.patch'
+        'debian-at_keyboard-module-init.patch'
+        'debian-uefi-secure-boot-cryptomount.patch'
+        'debian-vsnprintf-upper-case-hex.patch'
+        'debian-efi-variable-storage-minimise-writes.patch'
+        'debian-no-devicetree-if-secure-boot.patch'
+        'debian-grub-install-removable-shim.patch'
+        'debian-sparc64-fix-bios-boot-partition-support.patch'
+        'debian-verifiers-blocklist-fallout.patch'
+        'debian-btrfs-raid1c34.patch')
 
 sha256sums=('SKIP'
             'SKIP'
@@ -239,67 +239,67 @@ prepare() {
 	done
 
 	echo "Patches from debian..."
-	patch -Np1 -i "${srcdir}/olpc-prefix-hack.patch"
-	patch -Np1 -i "${srcdir}/core-in-fs.patch"
-	patch -Np1 -i "${srcdir}/dpkg-version-comparison.patch"
-	patch -Np1 -i "${srcdir}/grub-legacy-0-based-partitions.patch"
-	patch -Np1 -i "${srcdir}/disable-floppies.patch"
-	patch -Np1 -i "${srcdir}/grub.cfg-400.patch"
-	patch -Np1 -i "${srcdir}/gfxpayload-keep-default.patch"
-	patch -Np1 -i "${srcdir}/install-stage2-confusion.patch"
-	patch -Np1 -i "${srcdir}/mkrescue-efi-modules.patch"
-	patch -Np1 -i "${srcdir}/mkconfig-loopback.patch"
-	patch -Np1 -i "${srcdir}/restore-mkdevicemap.patch"
-	patch -Np1 -i "${srcdir}/gettext-quiet.patch"
-	patch -Np1 -i "${srcdir}/install-efi-fallback.patch"
-	patch -Np1 -i "${srcdir}/mkconfig-ubuntu-recovery.patch"
-	patch -Np1 -i "${srcdir}/install-locale-langpack.patch"
-	patch -Np1 -i "${srcdir}/mkconfig-nonexistent-loopback.patch"
-	patch -Np1 -i "${srcdir}/no-insmod-on-sb.patch"
-	patch -Np1 -i "${srcdir}/default-grub-d.patch"
-	patch -Np1 -i "${srcdir}/blacklist-1440x900x32.patch"
-	patch -Np1 -i "${srcdir}/uefi-firmware-setup.patch"
-	patch -Np1 -i "${srcdir}/mkconfig-ubuntu-distributor.patch"
-	patch -Np1 -i "${srcdir}/linuxefi.patch"
-	patch -Np1 -i "${srcdir}/mkconfig-signed-kernel.patch"
-	patch -Np1 -i "${srcdir}/install-signed.patch"
-	patch -Np1 -i "${srcdir}/sleep-shift.patch"
-	patch -Np1 -i "${srcdir}/wubi-no-windows.patch"
-	patch -Np1 -i "${srcdir}/maybe-quiet.patch"
-	patch -Np1 -i "${srcdir}/install-efi-adjust-distributor.patch"
-	patch -Np1 -i "${srcdir}/quick-boot.patch"
-	patch -Np1 -i "${srcdir}/quick-boot-lvm.patch"
-	patch -Np1 -i "${srcdir}/gfxpayload-dynamic.patch"
-	patch -Np1 -i "${srcdir}/vt-handoff.patch"
-	patch -Np1 -i "${srcdir}/probe-fusionio.patch"
-	patch -Np1 -i "${srcdir}/ignore-grub_func_test-failures.patch"
-	patch -Np1 -i "${srcdir}/mkconfig-recovery-title.patch"
-	patch -Np1 -i "${srcdir}/install-powerpc-machtypes.patch"
-	patch -Np1 -i "${srcdir}/ieee1275-clear-reset.patch"
-	patch -Np1 -i "${srcdir}/ppc64el-disable-vsx.patch"
-	patch -Np1 -i "${srcdir}/grub-install-pvxen-paths.patch"
-	patch -Np1 -i "${srcdir}/insmod-xzio-and-lzopio-on-xen.patch"
-	patch -Np1 -i "${srcdir}/grub-install-extra-removable.patch"
-	patch -Np1 -i "${srcdir}/mkconfig-other-inits.patch"
-	patch -Np1 -i "${srcdir}/zpool-full-device-name.patch"
-	patch -Np1 -i "${srcdir}/net-read-bracketed-ipv6-addr.patch"
-	patch -Np1 -i "${srcdir}/bootp-new-net_bootp6-command.patch"
-	patch -Np1 -i "${srcdir}/efinet-uefi-ipv6-pxe-support.patch"
-	patch -Np1 -i "${srcdir}/bootp-process-dhcpack-http-boot.patch"
-	patch -Np1 -i "${srcdir}/efinet-set-network-from-uefi-devpath.patch"
-	patch -Np1 -i "${srcdir}/efinet-set-dns-from-uefi-proto.patch"
-	patch -Np1 -i "${srcdir}/fix-lockdown.patch"
-	patch -Np1 -i "${srcdir}/skip-grub_cmd_set_date.patch"
-	patch -Np1 -i "${srcdir}/bash-completion-drop-have-checks.patch"
-	patch -Np1 -i "${srcdir}/at_keyboard-module-init.patch"
-	patch -Np1 -i "${srcdir}/uefi-secure-boot-cryptomount.patch"
-	patch -Np1 -i "${srcdir}/vsnprintf-upper-case-hex.patch"
-	patch -Np1 -i "${srcdir}/efi-variable-storage-minimise-writes.patch"
-	patch -Np1 -i "${srcdir}/no-devicetree-if-secure-boot.patch"
-	patch -Np1 -i "${srcdir}/grub-install-removable-shim.patch"
-	patch -Np1 -i "${srcdir}/sparc64-fix-bios-boot-partition-support.patch"
-	patch -Np1 -i "${srcdir}/verifiers-blocklist-fallout.patch"
-	patch -Np1 -i "${srcdir}/btrfs-raid1c34.patch"
+	patch -Np1 -i "${srcdir}/debian-olpc-prefix-hack.patch"
+	patch -Np1 -i "${srcdir}/debian-core-in-fs.patch"
+	patch -Np1 -i "${srcdir}/debian-dpkg-version-comparison.patch"
+	patch -Np1 -i "${srcdir}/debian-grub-legacy-0-based-partitions.patch"
+	patch -Np1 -i "${srcdir}/debian-disable-floppies.patch"
+	patch -Np1 -i "${srcdir}/debian-grub.cfg-400.patch"
+	patch -Np1 -i "${srcdir}/debian-gfxpayload-keep-default.patch"
+	patch -Np1 -i "${srcdir}/debian-install-stage2-confusion.patch"
+	patch -Np1 -i "${srcdir}/debian-mkrescue-efi-modules.patch"
+	patch -Np1 -i "${srcdir}/debian-mkconfig-loopback.patch"
+	patch -Np1 -i "${srcdir}/debian-restore-mkdevicemap.patch"
+	patch -Np1 -i "${srcdir}/debian-gettext-quiet.patch"
+	patch -Np1 -i "${srcdir}/debian-install-efi-fallback.patch"
+	patch -Np1 -i "${srcdir}/debian-mkconfig-ubuntu-recovery.patch"
+	patch -Np1 -i "${srcdir}/debian-install-locale-langpack.patch"
+	patch -Np1 -i "${srcdir}/debian-mkconfig-nonexistent-loopback.patch"
+	patch -Np1 -i "${srcdir}/debian-no-insmod-on-sb.patch"
+	patch -Np1 -i "${srcdir}/debian-default-grub-d.patch"
+	patch -Np1 -i "${srcdir}/debian-blacklist-1440x900x32.patch"
+	patch -Np1 -i "${srcdir}/debian-uefi-firmware-setup.patch"
+	patch -Np1 -i "${srcdir}/debian-mkconfig-ubuntu-distributor.patch"
+	patch -Np1 -i "${srcdir}/debian-linuxefi.patch"
+	patch -Np1 -i "${srcdir}/debian-mkconfig-signed-kernel.patch"
+	patch -Np1 -i "${srcdir}/debian-install-signed.patch"
+	patch -Np1 -i "${srcdir}/debian-sleep-shift.patch"
+	patch -Np1 -i "${srcdir}/debian-wubi-no-windows.patch"
+	patch -Np1 -i "${srcdir}/debian-maybe-quiet.patch"
+	patch -Np1 -i "${srcdir}/debian-install-efi-adjust-distributor.patch"
+	patch -Np1 -i "${srcdir}/debian-quick-boot.patch"
+	patch -Np1 -i "${srcdir}/debian-quick-boot-lvm.patch"
+	patch -Np1 -i "${srcdir}/debian-gfxpayload-dynamic.patch"
+	patch -Np1 -i "${srcdir}/debian-vt-handoff.patch"
+	patch -Np1 -i "${srcdir}/debian-probe-fusionio.patch"
+	patch -Np1 -i "${srcdir}/debian-ignore-grub_func_test-failures.patch"
+	patch -Np1 -i "${srcdir}/debian-mkconfig-recovery-title.patch"
+	patch -Np1 -i "${srcdir}/debian-install-powerpc-machtypes.patch"
+	patch -Np1 -i "${srcdir}/debian-ieee1275-clear-reset.patch"
+	patch -Np1 -i "${srcdir}/debian-ppc64el-disable-vsx.patch"
+	patch -Np1 -i "${srcdir}/debian-grub-install-pvxen-paths.patch"
+	patch -Np1 -i "${srcdir}/debian-insmod-xzio-and-lzopio-on-xen.patch"
+	patch -Np1 -i "${srcdir}/debian-grub-install-extra-removable.patch"
+	patch -Np1 -i "${srcdir}/debian-mkconfig-other-inits.patch"
+	patch -Np1 -i "${srcdir}/debian-zpool-full-device-name.patch"
+	patch -Np1 -i "${srcdir}/debian-net-read-bracketed-ipv6-addr.patch"
+	patch -Np1 -i "${srcdir}/debian-bootp-new-net_bootp6-command.patch"
+	patch -Np1 -i "${srcdir}/debian-efinet-uefi-ipv6-pxe-support.patch"
+	patch -Np1 -i "${srcdir}/debian-bootp-process-dhcpack-http-boot.patch"
+	patch -Np1 -i "${srcdir}/debian-efinet-set-network-from-uefi-devpath.patch"
+	patch -Np1 -i "${srcdir}/debian-efinet-set-dns-from-uefi-proto.patch"
+	patch -Np1 -i "${srcdir}/debian-fix-lockdown.patch"
+	patch -Np1 -i "${srcdir}/debian-skip-grub_cmd_set_date.patch"
+	patch -Np1 -i "${srcdir}/debian-bash-completion-drop-have-checks.patch"
+	patch -Np1 -i "${srcdir}/debian-at_keyboard-module-init.patch"
+	patch -Np1 -i "${srcdir}/debian-uefi-secure-boot-cryptomount.patch"
+	patch -Np1 -i "${srcdir}/debian-vsnprintf-upper-case-hex.patch"
+	patch -Np1 -i "${srcdir}/debian-efi-variable-storage-minimise-writes.patch"
+	patch -Np1 -i "${srcdir}/debian-no-devicetree-if-secure-boot.patch"
+	patch -Np1 -i "${srcdir}/debian-grub-install-removable-shim.patch"
+	patch -Np1 -i "${srcdir}/debian-sparc64-fix-bios-boot-partition-support.patch"
+	patch -Np1 -i "${srcdir}/debian-verifiers-blocklist-fallout.patch"
+	patch -Np1 -i "${srcdir}/debian-btrfs-raid1c34.patch"
 
 	echo "Revert patch that handle the Debian kernel version numbers..."
 	patch -Rp1 -i "${srcdir}/dpkg-version-comparison.patch"

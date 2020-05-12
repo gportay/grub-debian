@@ -36,6 +36,7 @@ import: PKGBUILD.import
 PKGBUILD.import: PKGBUILD.backport series
 	while read -r patch; do \
 		$(MAKE) --silent wget_$$patch; \
+		mv $$patch debian-$$patch; \
 	done <series
 	echo "_pkgver=$(VERSION)" >$@.tmp
 	echo "pkgver=\$${_pkgver/-/}" >>$@.tmp
@@ -43,20 +44,20 @@ PKGBUILD.import: PKGBUILD.backport series
 	echo "epoch=2" >>$@.tmp
 	sed -n -e '/^source=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' PKGBUILD.backport >>$@.tmp
 	while read -r patch; do \
-		printf '        '"'$$patch'"'\n' >>$@.tmp; \
+		printf '        '"'debian-$$patch'"'\n' >>$@.tmp; \
 	done <series
 	sed -i -e '$$s,$$,),' $@.tmp
 	printf '\n' >>$@.tmp
 	sed -n -e '/^sha256sums=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' PKGBUILD.backport >>$@.tmp
 	while read -r patch; do \
-		printf '            '"'$$(sha256sum "$$patch" | awk '{ print $$1 }' )'"'\n' >>$@.tmp; \
+		printf '            '"'$$(sha256sum "debian-$$patch" | awk '{ print $$1 }' )'"'\n' >>$@.tmp; \
 	done <series
 	sed -i -e '$$s,$$,),' $@.tmp
 	printf '\n' >>$@.tmp
 	printf 'prepare()\n' >>$@.tmp
 	printf '\techo "Patches from debian..."\n' >>$@.tmp
 	while read -r patch; do \
-		printf '\tpatch -Np1 -i "$${srcdir}/'$$patch'"\n' >>$@.tmp; \
+		printf '\tpatch -Np1 -i "$${srcdir}/'debian-$$patch'"\n' >>$@.tmp; \
 	done <series
 	printf '}\n' >>$@.tmp
 	printf '\n' >>$@.tmp
