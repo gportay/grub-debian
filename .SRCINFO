@@ -118,6 +118,7 @@ pkgbase = grub-debian
 	source = debian-sparc64-fix-bios-boot-partition-support.patch
 	source = debian-verifiers-blocklist-fallout.patch
 	source = debian-btrfs-raid1c34.patch
+	source = 0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch
 	validpgpkeys = E53D497F3FA42AD8C9B4D1E835A93B74E82E4209
 	validpgpkeys = BE5C23209ACDDACEB20DB0A28C8189F1988C2166
 	validpgpkeys = 95D2E9AB8740D8046387FD151A09227B1F435A33
@@ -190,6 +191,7 @@ pkgbase = grub-debian
 	sha256sums = dd9b47ad5d2071ea382dde3c763775c2a5c901414adc1c16c539481707bae9e3
 	sha256sums = 4bc40d51095df9903659bb623263764cd67771b73af5995c9584a1b332b90a4a
 	sha256sums = b41ab55426ae5c7c2a7738ea6c66543078101c4a27ff3e54cac7ff2bb74d4683
+	sha256sums = c3cf7da6d76df20137198c867bc9a1eb6b425204569b4b945b48bc9a6d82d9e0
 
 pkgname = grub-debian
 

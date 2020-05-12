@@ -126,7 +126,8 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         'debian-grub-install-removable-shim.patch'
         'debian-sparc64-fix-bios-boot-partition-support.patch'
         'debian-verifiers-blocklist-fallout.patch'
-        'debian-btrfs-raid1c34.patch')
+        'debian-btrfs-raid1c34.patch'
+        '0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch')
 
 sha256sums=('SKIP'
             'SKIP'
@@ -196,7 +197,8 @@ sha256sums=('SKIP'
             'fef6dfb6ca281e0db7d41bca49c252cb49429262c5d892b25dd2dfb79fe72cd5'
             'dd9b47ad5d2071ea382dde3c763775c2a5c901414adc1c16c539481707bae9e3'
             '4bc40d51095df9903659bb623263764cd67771b73af5995c9584a1b332b90a4a'
-            'b41ab55426ae5c7c2a7738ea6c66543078101c4a27ff3e54cac7ff2bb74d4683')
+            'b41ab55426ae5c7c2a7738ea6c66543078101c4a27ff3e54cac7ff2bb74d4683'
+            'c3cf7da6d76df20137198c867bc9a1eb6b425204569b4b945b48bc9a6d82d9e0')
 
 _backports=(
 	# grub-mkconfig: Use portable "command -v" to detect installed programs
@@ -303,6 +305,9 @@ prepare() {
 
 	echo "Revert patch that handle the Debian kernel version numbers..."
 	patch -Rp1 -i "${srcdir}/debian-dpkg-version-comparison.patch"
+
+	echo "Fix output a menu entry for firmware setup on UEFI FastBoot..."
+	patch -p1 -i "${srcdir}/0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch"
 
 	echo "Patch to detect of Arch Linux initramfs images by grub-mkconfig..."
 	patch -Np1 -i "${srcdir}/0003-10_linux-detect-archlinux-initramfs.patch"
