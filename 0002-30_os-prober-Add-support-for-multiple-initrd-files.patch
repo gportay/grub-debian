@@ -1,0 +1,43 @@
+From e3ba65e7a352d796a10f85e9e80044e6253a7e60 Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Ga=C3=ABl=20PORTAY?= <gael.portay@collabora.com>
+Date: Tue, 12 May 2020 14:50:09 -0400
+Subject: [PATCH] 30_os-prober: Add support for multiple initrd files
+
+The command initrd supports multiple files already but the script
+30_os-prober does not support it yet.
+
+grub-mkconfig outputs spurious characters '^' between the initrd files.
+These spurious characters replace the spaces to simplify the iteration
+over the output of linux-boot-prober.
+
+This commit restores back the spaces for the initrd files that enables
+the support for multiple initrd files from linux-boot-prober.
+---
+ util/grub.d/30_os-prober.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/util/grub.d/30_os-prober.in b/util/grub.d/30_os-prober.in
+index ca7bc6629..8c25af1a6 100644
+--- a/util/grub.d/30_os-prober.in
++++ b/util/grub.d/30_os-prober.in
+@@ -260,7 +260,7 @@ EOF
+         LBOOT="`echo ${LINUX} | cut -d ':' -f 2`"
+         LLABEL="`echo ${LINUX} | cut -d ':' -f 3 | tr '^' ' '`"
+         LKERNEL="`echo ${LINUX} | cut -d ':' -f 4`"
+-        LINITRD="`echo ${LINUX} | cut -d ':' -f 5`"
++        LINITRD="`echo ${LINUX} | cut -d ':' -f 5 | tr '^' ' '`"
+         LPARAMS="`echo ${LINUX} | cut -d ':' -f 6- | tr '^' ' '`"
+ 
+         if [ -z "${LLABEL}" ] ; then
+@@ -269,7 +269,7 @@ EOF
+ 
+ 	if [ "${LROOT}" != "${LBOOT}" ]; then
+ 	  LKERNEL="${LKERNEL#/boot}"
+-	  LINITRD="${LINITRD#/boot}"
++	  LINITRD="`echo ${LINITRD} | sed 's,/boot,g'`"
+ 	fi
+ 
+ 	if [ -z "${prepare_boot_cache}" ]; then
+-- 
+2.26.2
+
