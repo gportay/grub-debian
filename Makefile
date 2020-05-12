@@ -1,4 +1,6 @@
-BRANCH ?= debian/2.04-6
+VERSION ?= 2.04
+RELEASE ?= 6
+BRANCH ?= debian/$(VERSION)-$(RELEASE)
 DIFFTOOL ?= $(shell git config --get diff.tool || echo vimdiff)
 
 .PHONY: all
@@ -30,7 +32,11 @@ PKGBUILD.import: PKGBUILD.backport series
 	while read -r patch; do \
 		$(MAKE) --silent wget_$$patch; \
 	done <series
-	sed -n -e '/^source=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' PKGBUILD.backport >$@.tmp
+	echo "_pkgver=$(VERSION)" >$@.tmp
+	echo "pkgver=\$${_pkgver/-/}" >>$@.tmp
+	echo "pkgrel=$(RELEASE)" >>$@.tmp
+	echo "epoch=2" >>$@.tmp
+	sed -n -e '/^source=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' PKGBUILD.backport >>$@.tmp
 	while read -r patch; do \
 		printf '        '"'$$patch'"'\n' >>$@.tmp; \
 	done <series
