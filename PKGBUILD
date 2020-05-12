@@ -302,7 +302,7 @@ prepare() {
 	patch -Np1 -i "${srcdir}/debian-btrfs-raid1c34.patch"
 
 	echo "Revert patch that handle the Debian kernel version numbers..."
-	patch -Rp1 -i "${srcdir}/dpkg-version-comparison.patch"
+	patch -Rp1 -i "${srcdir}/debian-dpkg-version-comparison.patch"
 
 	echo "Patch to detect of Arch Linux initramfs images by grub-mkconfig..."
 	patch -Np1 -i "${srcdir}/0003-10_linux-detect-archlinux-initramfs.patch"
