@@ -70,6 +70,7 @@ backport: PKGBUILD.backport grub.default.backport
 	for file in $^; do \
 		$(DIFFTOOL) $$file $${file%.backport}; \
 	done
+	$(MAKE) updpkgsums
 
 series:
 	$(MAKE) wget_$@
