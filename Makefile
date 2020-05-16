@@ -77,7 +77,7 @@ series:
 
 .PHONY: clean
 clean:
-	rm -f PKGBUILD.import series
+	rm -f PKGBUILD.backport PKGBUILD.import series
 
 %.backport:
 	$(MAKE) wget_$*.backport
