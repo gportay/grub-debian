@@ -24,7 +24,7 @@ pkgname='grub-debian'
 pkgdesc='GNU GRand Unified Bootloader (2) with patches from Debian'
 _pkgver=2.04
 pkgver=${_pkgver/-/}
-pkgrel=7
+pkgrel=7.1
 epoch=2
 url='https://www.gnu.org/software/grub/'
 arch=('x86_64')
@@ -65,6 +65,7 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         "https://ftp.gnu.org/gnu/unifont/unifont-${_UNIFONT_VER}/unifont-${_UNIFONT_VER}.bdf.gz"{,.sig}
         '0003-10_linux-detect-archlinux-initramfs.patch'
         '0004-add-GRUB_COLOR_variables.patch'
+        '0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch'
         'grub.default'
         'debian-olpc-prefix-hack.patch'
         'debian-core-in-fs.patch'
@@ -136,6 +137,7 @@ sha256sums=('SKIP'
             'SKIP'
             '8dc5e5fe0dba842127cec88046cf505cdda08859d30acc18e4f72149d45bcdb2'
             '01b8d51914c4cd9914030b124e57097c1dc153d5cbad031a00470e891d5055db'
+            '06820004912a3db195a76e68b376fce1ba6507ac740129f0b99257ef07aba1ea'
             '690adb7943ee9fedff578a9d482233925ca3ad3e5a50fffddd27cf33300a89e3'
             '417fb948234b9f1a7b466a88ec9aef51e9409131f375fc2bacd9216504088b14'
             'be150109b09f937a9c70174d2ec7a4f38add4125908842219d3d8f8abc9619a6'
@@ -226,7 +228,7 @@ _configure_options=(
 	--with-grubdir="grub"
 	--disable-silent-rules
 	--enable-quiet-boot
-	--enable-quick-boot
+	--disable-quick-boot
 	--disable-werror
 )
 
@@ -315,6 +317,9 @@ prepare() {
 	echo "Patch to enable GRUB_COLOR_* variables in grub-mkconfig..."
 	## Based on http://lists.gnu.org/archive/html/grub-devel/2012-02/msg00021.html
 	patch -Np1 -i "${srcdir}/0004-add-GRUB_COLOR_variables.patch"
+
+	echo "Patch to NLS installation..."
+	patch -Np1 -i "${srcdir}/0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch"
 
 	echo "Fix DejaVuSans.ttf location so that grub-mkfont can create *.pf2 files for starfield theme..."
 	sed 's|/usr/share/fonts/dejavu|/usr/share/fonts/dejavu /usr/share/fonts/TTF|g' -i "configure.ac"
