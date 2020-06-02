@@ -66,6 +66,7 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         '0003-10_linux-detect-archlinux-initramfs.patch'
         '0004-add-GRUB_COLOR_variables.patch'
         '0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch'
+        'grub-recordfail.service'
         'grub.default'
         'debian-olpc-prefix-hack.patch'
         'debian-core-in-fs.patch'
@@ -138,6 +139,7 @@ sha256sums=('SKIP'
             '8dc5e5fe0dba842127cec88046cf505cdda08859d30acc18e4f72149d45bcdb2'
             '01b8d51914c4cd9914030b124e57097c1dc153d5cbad031a00470e891d5055db'
             '06820004912a3db195a76e68b376fce1ba6507ac740129f0b99257ef07aba1ea'
+            '65d41c0bcb933cf06060082b60571ba6c4e40b873e13117fca5708101e7182c2'
             '690adb7943ee9fedff578a9d482233925ca3ad3e5a50fffddd27cf33300a89e3'
             '417fb948234b9f1a7b466a88ec9aef51e9409131f375fc2bacd9216504088b14'
             'be150109b09f937a9c70174d2ec7a4f38add4125908842219d3d8f8abc9619a6'
@@ -514,4 +516,7 @@ package() {
 
 	echo "Package grub bios stuff..."
 	_package_grub-common_and_bios
+
+	echo "Package recordfail stuff..."
+	install -D -m644 ${srcdir}/grub-recordfail.service "${pkgdir}/usr/lib/systemd/system/grub-recordfail.service"
 }
