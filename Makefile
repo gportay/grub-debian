@@ -1,5 +1,5 @@
 VERSION ?= 2.04
-RELEASE ?= 7
+RELEASE ?= 8
 BRANCH ?= debian/$(VERSION)-$(RELEASE)
 DIFFTOOL ?= $(shell git config --get diff.tool || echo vimdiff)
 

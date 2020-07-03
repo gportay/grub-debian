@@ -24,7 +24,7 @@ pkgname='grub-debian'
 pkgdesc='GNU GRand Unified Bootloader (2) with patches from Debian'
 _pkgver=2.04
 pkgver=${_pkgver/-/}
-pkgrel=7.1
+pkgrel=8
 epoch=2
 url='https://www.gnu.org/software/grub/'
 arch=('x86_64')
@@ -129,6 +129,10 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         'debian-sparc64-fix-bios-boot-partition-support.patch'
         'debian-verifiers-blocklist-fallout.patch'
         'debian-btrfs-raid1c34.patch'
+        'debian-dejavu-font-path.patch'
+        'debian-xen-ignore-xenpolicy-and-config.patch'
+        'debian-xen-support-xsm.patch'
+        'debian-xen-no-xsm-policy-in-non-xsm-options.patch'
         '0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch')
 
 sha256sums=('SKIP'
@@ -202,6 +206,10 @@ sha256sums=('SKIP'
             'dd9b47ad5d2071ea382dde3c763775c2a5c901414adc1c16c539481707bae9e3'
             '4bc40d51095df9903659bb623263764cd67771b73af5995c9584a1b332b90a4a'
             'b41ab55426ae5c7c2a7738ea6c66543078101c4a27ff3e54cac7ff2bb74d4683'
+            '44a1ec4c5cadf5899b5e99c8cb385179d36840d6c8a036b06097ea127ae7ef15'
+            '6dc9155bbf20187b84611a922631e038e42194a1878dbac27ccf49e5fa81c4dc'
+            '6f4b877e13457bb43e8649a9cb6a577ea8ed5ebaadb67dfd40c763964aa29f49'
+            'f1572755df503b3566a01ce6e8d8b4ff1a6cea29fdc7330c7ab15928daa0a869'
             'c3cf7da6d76df20137198c867bc9a1eb6b425204569b4b945b48bc9a6d82d9e0')
 
 _backports=(
@@ -306,6 +314,10 @@ prepare() {
 	patch -Np1 -i "${srcdir}/debian-sparc64-fix-bios-boot-partition-support.patch"
 	patch -Np1 -i "${srcdir}/debian-verifiers-blocklist-fallout.patch"
 	patch -Np1 -i "${srcdir}/debian-btrfs-raid1c34.patch"
+	patch -Np1 -i "${srcdir}/debian-dejavu-font-path.patch"
+	patch -Np1 -i "${srcdir}/debian-xen-ignore-xenpolicy-and-config.patch"
+	patch -Np1 -i "${srcdir}/debian-xen-support-xsm.patch"
+	patch -Np1 -i "${srcdir}/debian-xen-no-xsm-policy-in-non-xsm-options.patch"
 
 	echo "Revert patch that handle the Debian kernel version numbers..."
 	patch -Rp1 -i "${srcdir}/debian-dpkg-version-comparison.patch"
