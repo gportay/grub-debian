@@ -24,7 +24,7 @@ pkgname='grub-debian'
 pkgdesc='GNU GRand Unified Bootloader (2) with patches from Debian'
 _pkgver=2.04
 pkgver=${_pkgver/-/}
-pkgrel=8
+pkgrel=9
 epoch=2
 url='https://www.gnu.org/software/grub/'
 arch=('x86_64')
@@ -133,6 +133,37 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         'debian-xen-ignore-xenpolicy-and-config.patch'
         'debian-xen-support-xsm.patch'
         'debian-xen-no-xsm-policy-in-non-xsm-options.patch'
+        'debian-CVE-2020-10713.patch'
+        'debian-safe-alloc-1.patch'
+        'debian-safe-alloc-2.patch'
+        'debian-safe-alloc-3.patch'
+        'debian-safe-alloc-4.patch'
+        'debian-iso9660-realloc-leak.patch'
+        'debian-font-name-leak.patch'
+        'debian-gfxmenu-load-image-double-free.patch'
+        'debian-xnu-double-free.patch'
+        'debian-lzma-overflow.patch'
+        'debian-term-overflow.patch'
+        'debian-udf-leak.patch'
+        'debian-multiboot2-leak.patch'
+        'debian-tftp-no-priority-queue.patch'
+        'debian-relocator-chunk-addr-overflow.patch'
+        'debian-relocator-chunk-align-underflow.patch'
+        'debian-script-remove-unused-fields.patch'
+        'debian-script-use-after-free.patch'
+        'debian-relocator-chunk-align-fix-top.patch'
+        'debian-hfsplus-overflow.patch'
+        'debian-lvm-overflow.patch'
+        'debian-emu-free-null.patch'
+        'debian-efi-malformed-device-path.patch'
+        'debian-efi-malformed-device-path-2.patch'
+        'debian-safe-alloc-5.patch'
+        'debian-efi-halt-reboot-use-after-free.patch'
+        'debian-linux-loader-overflow.patch'
+        'debian-linux-initrd-overflow.patch'
+        'debian-bootp-alloc.patch'
+        'debian-unix-config-overflow.patch'
+        'debian-deviceiter-overflow.patch'
         '0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch')
 
 sha256sums=('SKIP'
@@ -210,6 +241,37 @@ sha256sums=('SKIP'
             '6dc9155bbf20187b84611a922631e038e42194a1878dbac27ccf49e5fa81c4dc'
             '6f4b877e13457bb43e8649a9cb6a577ea8ed5ebaadb67dfd40c763964aa29f49'
             'f1572755df503b3566a01ce6e8d8b4ff1a6cea29fdc7330c7ab15928daa0a869'
+            '0d90b9182737869b2aaa7666c4f09932df7f6d41cc429ca3abff662b36c84cab'
+            'c03a44dc077f29bca88318e3ab5654b11e4dffe0ef9a60cc25215904d320e6bc'
+            'a43cf448d7986de5db28ff99f6a075b24102413c6c8b61bcc0336b76bc026768'
+            'cba7040e106f7038b564e2a8425a962ee0c5b759adb7342dd6ed157263702e4c'
+            'b48da6c257d36d490c2f14eae793a503f95a7466706053540a2d59fa97e7f94f'
+            '7df27d5b066d91e12e4db483e8535d2511f015a4ebd15d482ae480788b46b908'
+            '9ca5c2b8e390fdd2c1a24e4f692141e166c5929ca287b80784cdc27e6266d6d7'
+            '06b10052f09aacba2f4e697f15def925ce0fa3b30d7e2f028a9814d711b3f90b'
+            'a3e4895df064de1c527612013653998a675f8b2a30d7e835bb0ad92ef158da5a'
+            '1b223772a527b1df89d8a36dcff8df17d1f9706089f25522f57a89af543bd8f7'
+            '4a01fc293f345f008ccf3b80d905849252de1418a14bb3873582bec04ace8694'
+            '5151dccb4a44d26dd21eed6568046f5b292d78bff54c7645c641e67e496b1a8a'
+            '70ed65a37e9e234a94a5b7b5cbb077a0969658d7c75089f99bf42510b3a546ae'
+            '55826d5c7843fd606c65c070725b0d7017df3a6eec570bbec8fcd933244e6c22'
+            'c8506be7a8296a3f04b93a172015156c1dbc8c57786389e57c924ed43a5f3dc3'
+            '191225d18422a9b884d53607554ba6fa8b8a21d3384f1bf4ccf0c0ef17ad7c95'
+            '574d1bab06990463b121274052a5eed7069af69bbbd272ba175cebf4749d43d2'
+            '727cc99707373b06e3063ee580e41df8acb40437bc8ec318795399ed48be8da1'
+            '54c095cc81713e5b55d9f0cc819c43066651528217b0652a75f60874337c1222'
+            '18e09d905b0d87ea23b3e3c0b8a2ededfa627d20409e0ee145f962b77ca3406d'
+            'a0aa7d3858b272f6341a57938945012725f4223079430e1cd915753e4368f186'
+            '51fac799cf64764aa6248284a5c15ceec146417d10f9922bfeb488a0b5869eed'
+            '2d4668620e46ba28c3bdb0ba0b2104a0b739a5886a3892a4bff3e77d0c77b051'
+            'f56fed27ceb758796d16313ed08944c0e529797eddccff94b73ee8121910f0dc'
+            '4d1ce68c2ccad6b7829fc2bf081c59b04ec9b6327a7a4a13b9074e438727ce88'
+            '68ef3222ec2d09a1c33b1a7692503faaf21862e0c856c86e63eb3d12753f94cf'
+            '1779e1bd323c3c2c81f2513dff494ebde9a0e7f1dedeec510e6ab888cbb5a75d'
+            'dd0658b2414cf0498c8b207383064ea725fa4225f4f3e2f7f2d10072b2877967'
+            'cbc785aab8d6211f2e12db87e28e6ee10302bde82236320991a1a85b099b9315'
+            '7eab2dcde6a5b0e309e28480d90dd7475db8bdf8d0cfc0c07213899436d8d720'
+            '77bc269851a5ef01db256a745b93bb191936a2c9018884f88a9a7b0d657741b9'
             'c3cf7da6d76df20137198c867bc9a1eb6b425204569b4b945b48bc9a6d82d9e0')
 
 _backports=(
@@ -318,6 +380,37 @@ prepare() {
 	patch -Np1 -i "${srcdir}/debian-xen-ignore-xenpolicy-and-config.patch"
 	patch -Np1 -i "${srcdir}/debian-xen-support-xsm.patch"
 	patch -Np1 -i "${srcdir}/debian-xen-no-xsm-policy-in-non-xsm-options.patch"
+	patch -Np1 -i "${srcdir}/debian-CVE-2020-10713.patch"
+	patch -Np1 -i "${srcdir}/debian-safe-alloc-1.patch"
+	patch -Np1 -i "${srcdir}/debian-safe-alloc-2.patch"
+	patch -Np1 -i "${srcdir}/debian-safe-alloc-3.patch"
+	patch -Np1 -i "${srcdir}/debian-safe-alloc-4.patch"
+	patch -Np1 -i "${srcdir}/debian-iso9660-realloc-leak.patch"
+	patch -Np1 -i "${srcdir}/debian-font-name-leak.patch"
+	patch -Np1 -i "${srcdir}/debian-gfxmenu-load-image-double-free.patch"
+	patch -Np1 -i "${srcdir}/debian-xnu-double-free.patch"
+	patch -Np1 -i "${srcdir}/debian-lzma-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-term-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-udf-leak.patch"
+	patch -Np1 -i "${srcdir}/debian-multiboot2-leak.patch"
+	patch -Np1 -i "${srcdir}/debian-tftp-no-priority-queue.patch"
+	patch -Np1 -i "${srcdir}/debian-relocator-chunk-addr-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-relocator-chunk-align-underflow.patch"
+	patch -Np1 -i "${srcdir}/debian-script-remove-unused-fields.patch"
+	patch -Np1 -i "${srcdir}/debian-script-use-after-free.patch"
+	patch -Np1 -i "${srcdir}/debian-relocator-chunk-align-fix-top.patch"
+	patch -Np1 -i "${srcdir}/debian-hfsplus-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-lvm-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-emu-free-null.patch"
+	patch -Np1 -i "${srcdir}/debian-efi-malformed-device-path.patch"
+	patch -Np1 -i "${srcdir}/debian-efi-malformed-device-path-2.patch"
+	patch -Np1 -i "${srcdir}/debian-safe-alloc-5.patch"
+	patch -Np1 -i "${srcdir}/debian-efi-halt-reboot-use-after-free.patch"
+	patch -Np1 -i "${srcdir}/debian-linux-loader-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-linux-initrd-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-bootp-alloc.patch"
+	patch -Np1 -i "${srcdir}/debian-unix-config-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-deviceiter-overflow.patch"
 
 	echo "Revert patch that handle the Debian kernel version numbers..."
 	patch -Rp1 -i "${srcdir}/debian-dpkg-version-comparison.patch"
