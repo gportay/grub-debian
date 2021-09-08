@@ -81,7 +81,7 @@ clean:
 	$(MAKE) wget_$*.backport
 
 wget_%.backport:
-	wget https://git.archlinux.org/svntogit/packages.git/plain/repos/core-x86_64/$*?h=packages/grub -O $*.backport
+	wget https://raw.githubusercontent.com/archlinux/svntogit-packages/master/grub/repos/core-x86_64/$* -O $*.backport
 
 debian/%:
 	mkdir -p debian/$(*D)
