@@ -10,22 +10,20 @@ _IA32_EFI_IN_ARCH_X64="1"
 ## "1" to enable EMU build, "0" to disable
 _GRUB_EMU_BUILD="0"
 
-_GRUB_EXTRAS_COMMIT="8a245d5c1800627af4cefa99162a89c7a46d8842"
-_GNULIB_COMMIT="be584c56eb1311606e5ea1a36363b97bddb6eed3"
-_UNIFONT_VER="12.1.03"
+[[ "${CARCH}" == 'x86_64' ]] && _EFI_ARCH='x86_64'
+[[ "${CARCH}" == 'i686' ]] && _EFI_ARCH='i386'
 
-[[ "${CARCH}" == "x86_64" ]] && _EFI_ARCH="x86_64"
-[[ "${CARCH}" == "i686" ]] && _EFI_ARCH="i386"
-
-[[ "${CARCH}" == "x86_64" ]] && _EMU_ARCH="x86_64"
-[[ "${CARCH}" == "i686" ]] && _EMU_ARCH="i386"
+[[ "${CARCH}" == 'x86_64' ]] && _EMU_ARCH='x86_64'
+[[ "${CARCH}" == 'i686' ]] && _EMU_ARCH='i386'
 
 pkgname='grub-debian'
 pkgdesc='GNU GRand Unified Bootloader (2) with patches from Debian'
+epoch=2
+_gnulib_commit='be584c56eb1311606e5ea1a36363b97bddb6eed3'
+_unifont_ver='13.0.06'
 _pkgver=2.04
 pkgver=${_pkgver/-/}
-pkgrel=9
-epoch=2
+pkgrel=10
 url='https://www.gnu.org/software/grub/'
 arch=('x86_64')
 license=('GPL3')
@@ -60,11 +58,10 @@ validpgpkeys=('E53D497F3FA42AD8C9B4D1E835A93B74E82E4209'  # Vladimir 'phcoder' S
               '95D2E9AB8740D8046387FD151A09227B1F435A33') # Paul Hardy <unifoundry@unifoundry.com>
 
 source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signed"
-        "git+https://git.savannah.gnu.org/git/grub-extras.git#commit=${_GRUB_EXTRAS_COMMIT}"
-        "git+https://git.savannah.gnu.org/git/gnulib.git#commit=${_GNULIB_COMMIT}"
-        "https://ftp.gnu.org/gnu/unifont/unifont-${_UNIFONT_VER}/unifont-${_UNIFONT_VER}.bdf.gz"{,.sig}
-        '0003-10_linux-detect-archlinux-initramfs.patch'
-        '0004-add-GRUB_COLOR_variables.patch'
+        "git+https://git.savannah.gnu.org/git/gnulib.git#commit=${_gnulib_commit}"
+        "https://ftp.gnu.org/gnu/unifont/unifont-${_unifont_ver}/unifont-${_unifont_ver}.bdf.gz"{,.sig}
+        '0001-00_header-add-GRUB_COLOR_-variables.patch'
+        '0002-10_linux-detect-archlinux-initramfs.patch'
         '0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch'
         'grub-recordfail.service'
         'grub.default'
@@ -168,14 +165,13 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
 
 sha256sums=('SKIP'
             'SKIP'
+            'b7668a5d498972dc4981250c49f83601babce797be19b4fdd0f2f1c6cfbd0fc5'
             'SKIP'
-            '6067bda8daa1f3c49d8876107992e19fc9ab905ad54c01c3131b9649977c3746'
-            'SKIP'
-            '8dc5e5fe0dba842127cec88046cf505cdda08859d30acc18e4f72149d45bcdb2'
-            '01b8d51914c4cd9914030b124e57097c1dc153d5cbad031a00470e891d5055db'
+            'd310396bc65b82a36a66b54abb41b52be345a57dd41d3d4e3024d87a79030d4f'
+            '6bd8cb45a790d8691baf37a7742631f1d44c94a4c0c87820e27840b69b201722'
             '06820004912a3db195a76e68b376fce1ba6507ac740129f0b99257ef07aba1ea'
             '65d41c0bcb933cf06060082b60571ba6c4e40b873e13117fca5708101e7182c2'
-            '690adb7943ee9fedff578a9d482233925ca3ad3e5a50fffddd27cf33300a89e3'
+            '791fadf182edf8d5bee4b45c008b08adce9689a9624971136527891a8f67d206'
             '417fb948234b9f1a7b466a88ec9aef51e9409131f375fc2bacd9216504088b14'
             'be150109b09f937a9c70174d2ec7a4f38add4125908842219d3d8f8abc9619a6'
             '418a1b11549ffaa5b96f974916d36b5d00f003ed58631fdd199f96bb7cf925ea'
@@ -418,12 +414,12 @@ prepare() {
 	echo "Fix output a menu entry for firmware setup on UEFI FastBoot..."
 	patch -p1 -i "${srcdir}/0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch"
 
-	echo "Patch to detect of Arch Linux initramfs images by grub-mkconfig..."
-	patch -Np1 -i "${srcdir}/0003-10_linux-detect-archlinux-initramfs.patch"
-
 	echo "Patch to enable GRUB_COLOR_* variables in grub-mkconfig..."
 	## Based on http://lists.gnu.org/archive/html/grub-devel/2012-02/msg00021.html
-	patch -Np1 -i "${srcdir}/0004-add-GRUB_COLOR_variables.patch"
+        patch -Np1 -i "${srcdir}/0001-00_header-add-GRUB_COLOR_-variables.patch"
+
+	echo "Patch to detect of Arch Linux initramfs images by grub-mkconfig..."
+        patch -Np1 -i "${srcdir}/0002-10_linux-detect-archlinux-initramfs.patch"
 
 	echo "Patch to NLS installation..."
 	patch -Np1 -i "${srcdir}/0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch"
@@ -442,7 +438,7 @@ prepare() {
 
 	echo "Avoid problem with unifont during compile of grub..."
 	# http://savannah.gnu.org/bugs/?40330 and https://bugs.archlinux.org/task/37847
-	gzip -cd "${srcdir}/unifont-${_UNIFONT_VER}.bdf.gz" > "unifont.bdf"
+	gzip -cd "${srcdir}/unifont-${_unifont_ver}.bdf.gz" > "unifont.bdf"
 
 	echo "Run bootstrap..."
 	./bootstrap \
@@ -464,12 +460,6 @@ _build_grub-common_and_bios() {
 	echo "Copy the source for building the bios part..."
 	cp -r "${srcdir}/grub/" "${srcdir}/grub-bios/"
 	cd "${srcdir}/grub-bios/"
-
-	echo "Add the grub-extra sources for bios build..."
-	install -d "${srcdir}/grub-bios/grub-extras"
-	cp -r "${srcdir}/grub-extras/915resolution" \
-		"${srcdir}/grub-bios/grub-extras/915resolution"
-	export GRUB_CONTRIB="${srcdir}/grub-bios/grub-extras/"
 
 	echo "Unset all compiler FLAGS for bios build..."
 	unset CFLAGS

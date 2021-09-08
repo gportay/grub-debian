@@ -1,7 +1,7 @@
 pkgbase = grub-debian
 	pkgdesc = GNU GRand Unified Bootloader (2) with patches from Debian
 	pkgver = 2.04
-	pkgrel = 9
+	pkgrel = 10
 	epoch = 2
 	url = https://www.gnu.org/software/grub/
 	install = grub.install
@@ -50,12 +50,11 @@ pkgbase = grub-debian
 	backup = etc/default/grub
 	backup = etc/grub.d/40_custom
 	source = git+https://git.savannah.gnu.org/git/grub.git#tag=grub-2.04?signed
-	source = git+https://git.savannah.gnu.org/git/grub-extras.git#commit=8a245d5c1800627af4cefa99162a89c7a46d8842
 	source = git+https://git.savannah.gnu.org/git/gnulib.git#commit=be584c56eb1311606e5ea1a36363b97bddb6eed3
-	source = https://ftp.gnu.org/gnu/unifont/unifont-12.1.03/unifont-12.1.03.bdf.gz
-	source = https://ftp.gnu.org/gnu/unifont/unifont-12.1.03/unifont-12.1.03.bdf.gz.sig
-	source = 0003-10_linux-detect-archlinux-initramfs.patch
-	source = 0004-add-GRUB_COLOR_variables.patch
+	source = https://ftp.gnu.org/gnu/unifont/unifont-13.0.06/unifont-13.0.06.bdf.gz
+	source = https://ftp.gnu.org/gnu/unifont/unifont-13.0.06/unifont-13.0.06.bdf.gz.sig
+	source = 0001-00_header-add-GRUB_COLOR_-variables.patch
+	source = 0002-10_linux-detect-archlinux-initramfs.patch
 	source = 0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch
 	source = grub-recordfail.service
 	source = grub.default
@@ -161,14 +160,13 @@ pkgbase = grub-debian
 	validpgpkeys = 95D2E9AB8740D8046387FD151A09227B1F435A33
 	sha256sums = SKIP
 	sha256sums = SKIP
+	sha256sums = b7668a5d498972dc4981250c49f83601babce797be19b4fdd0f2f1c6cfbd0fc5
 	sha256sums = SKIP
-	sha256sums = 6067bda8daa1f3c49d8876107992e19fc9ab905ad54c01c3131b9649977c3746
-	sha256sums = SKIP
-	sha256sums = 8dc5e5fe0dba842127cec88046cf505cdda08859d30acc18e4f72149d45bcdb2
-	sha256sums = 01b8d51914c4cd9914030b124e57097c1dc153d5cbad031a00470e891d5055db
+	sha256sums = d310396bc65b82a36a66b54abb41b52be345a57dd41d3d4e3024d87a79030d4f
+	sha256sums = 6bd8cb45a790d8691baf37a7742631f1d44c94a4c0c87820e27840b69b201722
 	sha256sums = 06820004912a3db195a76e68b376fce1ba6507ac740129f0b99257ef07aba1ea
 	sha256sums = 65d41c0bcb933cf06060082b60571ba6c4e40b873e13117fca5708101e7182c2
-	sha256sums = 690adb7943ee9fedff578a9d482233925ca3ad3e5a50fffddd27cf33300a89e3
+	sha256sums = 791fadf182edf8d5bee4b45c008b08adce9689a9624971136527891a8f67d206
 	sha256sums = 417fb948234b9f1a7b466a88ec9aef51e9409131f375fc2bacd9216504088b14
 	sha256sums = be150109b09f937a9c70174d2ec7a4f38add4125908842219d3d8f8abc9619a6
 	sha256sums = 418a1b11549ffaa5b96f974916d36b5d00f003ed58631fdd199f96bb7cf925ea
