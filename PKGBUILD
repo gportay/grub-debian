@@ -23,7 +23,7 @@ _gnulib_commit='be584c56eb1311606e5ea1a36363b97bddb6eed3'
 _unifont_ver='13.0.06'
 _pkgver=2.04
 pkgver=${_pkgver/-/}
-pkgrel=10
+pkgrel=20
 url='https://www.gnu.org/software/grub/'
 arch=('x86_64')
 license=('GPL3')
@@ -62,7 +62,6 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         "https://ftp.gnu.org/gnu/unifont/unifont-${_unifont_ver}/unifont-${_unifont_ver}.bdf.gz"{,.sig}
         '0001-00_header-add-GRUB_COLOR_-variables.patch'
         '0002-10_linux-detect-archlinux-initramfs.patch'
-        '0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch'
         'grub-recordfail.service'
         'grub.default'
         'debian-olpc-prefix-hack.patch'
@@ -161,7 +160,131 @@ source=("git+https://git.savannah.gnu.org/git/grub.git#tag=grub-${_pkgver}?signe
         'debian-bootp-alloc.patch'
         'debian-unix-config-overflow.patch'
         'debian-deviceiter-overflow.patch'
-        '0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch')
+        'debian-osdep-exec-avoid-atexit-when-child-exits.patch'
+        'debian-grub-install-backup-and-restore.patch'
+        'debian-tftp-roll-over-block-counter.patch'
+        'debian-mdraid1x-linux-gcc-10.patch'
+        'debian-zfs-gcc-10.patch'
+        'debian-uefi-firmware-efivarfs.patch'
+        'debian-grub-install-inverted-nls-test.patch'
+        'debian-2021-02-security-001-verifiers-Move-verifiers-API-to-kernel-image.patch'
+        'debian-2021-02-security-002-kern-Add-lockdown-support.patch'
+        'debian-2021-02-security-003-kern-lockdown-Set-a-variable-if-the-GRUB-is-locked-down.patch'
+        'debian-2021-02-security-004-efi-Lockdown-the-GRUB-when-the-UEFI-Secure-Boot-is-enabled.patch'
+        'debian-2021-02-security-005-efi-Use-grub_is_lockdown-instead-of-hardcoding-a-disabled-modules-list.patch'
+        'debian-2021-02-security-006-acpi-Don-t-register-the-acpi-command-when-locked-down.patch'
+        'debian-2021-02-security-007-mmap-Don-t-register-cutmem-and-badram-commands-when-lockdown-is-enforced.patch'
+        'debian-2021-02-security-008-commands-Restrict-commands-that-can-load-BIOS-or-DT-blobs-when-locked-down.patch'
+        'debian-2021-02-security-009-commands-setpci-Restrict-setpci-command-when-locked-down.patch'
+        'debian-2021-02-security-010-commands-hdparm-Restrict-hdparm-command-when-locked-down.patch'
+        'debian-2021-02-security-011-gdb-Restrict-GDB-access-when-locked-down.patch'
+        'debian-2021-02-security-012-loader-xnu-Don-t-allow-loading-extension-and-packages-when-locked-down.patch'
+        'debian-2021-02-security-013-docs-Document-the-cutmem-command.patch'
+        'debian-2021-02-security-014-dl-Only-allow-unloading-modules-that-are-not-dependencies.patch'
+        'debian-2021-02-security-015-usb-Avoid-possible-out-of-bound-accesses-caused-by-malicious-devices.patch'
+        'debian-2021-02-security-016-mmap-Fix-memory-leak-when-iterating-over-mapped-memory.patch'
+        'debian-2021-02-security-017-net-net-Fix-possible-dereference-to-of-a-NULL-pointer.patch'
+        'debian-2021-02-security-018-net-tftp-Fix-dangling-memory-pointer.patch'
+        'debian-2021-02-security-019-kern-parser-Fix-resource-leak-if-argc-0.patch'
+        'debian-2021-02-security-020-kern-efi-Fix-memory-leak-on-failure.patch'
+        'debian-2021-02-security-021-kern-efi-mm-Fix-possible-NULL-pointer-dereference.patch'
+        'debian-2021-02-security-022-gnulib-regexec-Resolve-unused-variable.patch'
+        'debian-2021-02-security-023-gnulib-regcomp-Fix-uninitialized-token-structure.patch'
+        'debian-2021-02-security-024-gnulib-argp-help-Fix-dereference-of-a-possibly-NULL-state.patch'
+        'debian-2021-02-security-025-gnulib-regexec-Fix-possible-null-dereference.patch'
+        'debian-2021-02-security-026-gnulib-regcomp-Fix-uninitialized-re_token.patch'
+        'debian-2021-02-security-027-io-lzopio-Resolve-unnecessary-self-assignment-errors.patch'
+        'debian-2021-02-security-028-zstd-Initialize-seq_t-structure-fully.patch'
+        'debian-2021-02-security-029-kern-partition-Check-for-NULL-before-dereferencing-input-string.patch'
+        'debian-2021-02-security-030-disk-ldm-Make-sure-comp-data-is-freed-before-exiting-from-make_vg.patch'
+        'debian-2021-02-security-031-disk-ldm-If-failed-then-free-vg-variable-too.patch'
+        'debian-2021-02-security-032-disk-ldm-Fix-memory-leak-on-uninserted-lv-references.patch'
+        'debian-2021-02-security-033-disk-cryptodisk-Fix-potential-integer-overflow.patch'
+        'debian-2021-02-security-034-hfsplus-Check-that-the-volume-name-length-is-valid.patch'
+        'debian-2021-02-security-035-zfs-Fix-possible-negative-shift-operation.patch'
+        'debian-2021-02-security-036-zfs-Fix-resource-leaks-while-constructing-path.patch'
+        'debian-2021-02-security-037-zfs-Fix-possible-integer-overflows.patch'
+        'debian-2021-02-security-038-zfsinfo-Correct-a-check-for-error-allocating-memory.patch'
+        'debian-2021-02-security-039-affs-Fix-memory-leaks.patch'
+        'debian-2021-02-security-040-libgcrypt-mpi-Fix-possible-unintended-sign-extension.patch'
+        'debian-2021-02-security-041-libgcrypt-mpi-Fix-possible-NULL-dereference.patch'
+        'debian-2021-02-security-042-syslinux-Fix-memory-leak-while-parsing.patch'
+        'debian-2021-02-security-043-normal-completion-Fix-leaking-of-memory-when-processing-a-completion.patch'
+        'debian-2021-02-security-044-commands-hashsum-Fix-a-memory-leak.patch'
+        'debian-2021-02-security-045-video-efi_gop-Remove-unnecessary-return-value-of-grub_video_gop_fill_mode_info.patch'
+        'debian-2021-02-security-046-video-fb-fbfill-Fix-potential-integer-overflow.patch'
+        'debian-2021-02-security-047-video-fb-video_fb-Fix-multiple-integer-overflows.patch'
+        'debian-2021-02-security-048-video-fb-video_fb-Fix-possible-integer-overflow.patch'
+        'debian-2021-02-security-049-video-readers-jpeg-Test-for-an-invalid-next-marker-reference-from-a-jpeg-file.patch'
+        'debian-2021-02-security-050-gfxmenu-gui_list-Remove-code-that-coverity-is-flagging-as-dead.patch'
+        'debian-2021-02-security-051-loader-bsd-Check-for-NULL-arg-up-front.patch'
+        'debian-2021-02-security-052-loader-xnu-Fix-memory-leak.patch'
+        'debian-2021-02-security-053-loader-xnu-Free-driverkey-data-when-an-error-is-detected-in-grub_xnu_writetree_toheap.patch'
+        'debian-2021-02-security-054-loader-xnu-Check-if-pointer-is-NULL-before-using-it.patch'
+        'debian-2021-02-security-055-util-grub-install-Fix-NULL-pointer-dereferences.patch'
+        'debian-2021-02-security-056-util-grub-editenv-Fix-incorrect-casting-of-a-signed-value.patch'
+        'debian-2021-02-security-057-util-glue-efi-Fix-incorrect-use-of-a-possibly-negative-value.patch'
+        'debian-2021-02-security-058-script-execute-Fix-NULL-dereference-in-grub_script_execute_cmdline.patch'
+        'debian-2021-02-security-059-commands-ls-Require-device_name-is-not-NULL-before-printing.patch'
+        'debian-2021-02-security-060-script-execute-Avoid-crash-when-using-outside-a-function-scope.patch'
+        'debian-2021-02-security-061-lib-arg-Block-repeated-short-options-that-require-an-argument.patch'
+        'debian-2021-02-security-062-script-execute-Don-t-crash-on-a-for-loop-with-no-items.patch'
+        'debian-2021-02-security-063-commands-menuentry-Fix-quoting-in-setparams_prefix.patch'
+        'debian-2021-02-security-064-kern-misc-Always-set-end-in-grub_strtoull.patch'
+        'debian-2021-02-security-065-video-readers-jpeg-Catch-files-with-unsupported-quantization-or-Huffman-tables.patch'
+        'debian-2021-02-security-066-video-readers-jpeg-Catch-OOB-reads-writes-in-grub_jpeg_decode_du.patch'
+        'debian-2021-02-security-067-video-readers-jpeg-Don-t-decode-data-before-start-of-stream.patch'
+        'debian-2021-02-security-068-term-gfxterm-Don-t-set-up-a-font-with-glyphs-that-are-too-big.patch'
+        'debian-2021-02-security-069-fs-fshelp-Catch-impermissibly-large-block-sizes-in-read-helper.patch'
+        'debian-2021-02-security-070-fs-hfsplus-Don-t-fetch-a-key-beyond-the-end-of-the-node.patch'
+        'debian-2021-02-security-071-fs-hfsplus-Don-t-use-uninitialized-data-on-corrupt-filesystems.patch'
+        'debian-2021-02-security-072-fs-hfs-Disable-under-lockdown.patch'
+        'debian-2021-02-security-073-fs-sfs-Fix-over-read-of-root-object-name.patch'
+        'debian-2021-02-security-074-fs-jfs-Do-not-move-to-leaf-level-if-name-length-is-negative.patch'
+        'debian-2021-02-security-075-fs-jfs-Limit-the-extents-that-getblk-can-consider.patch'
+        'debian-2021-02-security-076-fs-jfs-Catch-infinite-recursion.patch'
+        'debian-2021-02-security-077-fs-nilfs2-Reject-too-large-keys.patch'
+        'debian-2021-02-security-078-fs-nilfs2-Don-t-search-children-if-provided-number-is-too-large.patch'
+        'debian-2021-02-security-079-fs-nilfs2-Properly-bail-on-errors-in-grub_nilfs2_btree_node_lookup.patch'
+        'debian-2021-02-security-080-io-gzio-Bail-if-gzio-tl-td-is-NULL.patch'
+        'debian-2021-02-security-081-io-gzio-Add-init_dynamic_block-clean-up-if-unpacking-codes-fails.patch'
+        'debian-2021-02-security-082-io-gzio-Catch-missing-values-in-huft_build-and-bail.patch'
+        'debian-2021-02-security-083-io-gzio-Zero-gzio-tl-td-in-init_dynamic_block-if-huft_build-fails.patch'
+        'debian-2021-02-security-084-disk-lvm-Don-t-go-beyond-the-end-of-the-data-we-read-from-disk.patch'
+        'debian-2021-02-security-085-disk-lvm-Don-t-blast-past-the-end-of-the-circular-metadata-buffer.patch'
+        'debian-2021-02-security-086-disk-lvm-Bail-on-missing-PV-list.patch'
+        'debian-2021-02-security-087-disk-lvm-Do-not-crash-if-an-expected-string-is-not-found.patch'
+        'debian-2021-02-security-088-disk-lvm-Do-not-overread-metadata.patch'
+        'debian-2021-02-security-089-disk-lvm-Sanitize-rlocn-offset-to-prevent-wild-read.patch'
+        'debian-2021-02-security-090-disk-lvm-Do-not-allow-a-LV-to-be-it-s-own-segment-s-node-s-LV.patch'
+        'debian-2021-02-security-091-fs-btrfs-Validate-the-number-of-stripes-parities-in-RAID5-6.patch'
+        'debian-2021-02-security-092-fs-btrfs-Squash-some-uninitialized-reads.patch'
+        'debian-2021-02-security-093-kern-parser-Fix-a-memory-leak.patch'
+        'debian-2021-02-security-094-kern-parser-Introduce-process_char-helper.patch'
+        'debian-2021-02-security-095-kern-parser-Introduce-terminate_arg-helper.patch'
+        'debian-2021-02-security-096-kern-parser-Refactor-grub_parser_split_cmdline-cleanup.patch'
+        'debian-2021-02-security-097-kern-buffer-Add-variable-sized-heap-buffer.patch'
+        'debian-2021-02-security-098-kern-parser-Fix-a-stack-buffer-overflow.patch'
+        'debian-2021-02-security-099-kern-efi-Add-initial-stack-protector-implementation.patch'
+        'debian-2021-02-security-100-util-mkimage-Remove-unused-code-to-add-BSS-section.patch'
+        'debian-2021-02-security-101-util-mkimage-Use-grub_host_to_target32-instead-of-grub_cpu_to_le32.patch'
+        'debian-2021-02-security-102-util-mkimage-Always-use-grub_host_to_target32-to-initialize-PE-stack-and-heap-stuff.patch'
+        'debian-2021-02-security-103-util-mkimage-Unify-more-of-the-PE32-and-PE32-header-set-up.patch'
+        'debian-2021-02-security-104-util-mkimage-Reorder-PE-optional-header-fields-set-up.patch'
+        'debian-2021-02-security-105-util-mkimage-Improve-data_size-value-calculation.patch'
+        'debian-2021-02-security-106-util-mkimage-Refactor-section-setup-to-use-a-helper.patch'
+        'debian-2021-02-security-107-util-mkimage-Add-an-option-to-import-SBAT-metadata-into-a-.sbat-section.patch'
+        'debian-2021-02-security-108-grub-install-common-Add-sbat-option.patch'
+        'debian-2021-02-security-109-kern-misc-Split-parse_printf_args-into-format-parsing-and-va_list-handling.patch'
+        'debian-2021-02-security-110-kern-misc-Add-STRING-type-for-internal-printf-format-handling.patch'
+        'debian-2021-02-security-111-kern-misc-Add-function-to-check-printf-format-against-expected-format.patch'
+        'debian-2021-02-security-112-gfxmenu-gui-Check-printf-format-in-the-gui_progress_bar-and-gui_label.patch'
+        'debian-2021-02-security-113-kern-mm-Fix-grub_debug_calloc-compilation-error.patch'
+        'debian-pc-verifiers-module.patch'
+        'debian-enable_shim_lock_i386_efi.patch'
+        'debian-debug_verifiers.patch'
+        'debian-mkimage-fix-section-sizes.patch'
+        'debian-tpm-unknown-error-non-fatal.patch')
 
 sha256sums=('SKIP'
             'SKIP'
@@ -169,7 +292,6 @@ sha256sums=('SKIP'
             'SKIP'
             'd310396bc65b82a36a66b54abb41b52be345a57dd41d3d4e3024d87a79030d4f'
             '6bd8cb45a790d8691baf37a7742631f1d44c94a4c0c87820e27840b69b201722'
-            '06820004912a3db195a76e68b376fce1ba6507ac740129f0b99257ef07aba1ea'
             '65d41c0bcb933cf06060082b60571ba6c4e40b873e13117fca5708101e7182c2'
             '791fadf182edf8d5bee4b45c008b08adce9689a9624971136527891a8f67d206'
             '417fb948234b9f1a7b466a88ec9aef51e9409131f375fc2bacd9216504088b14'
@@ -268,7 +390,131 @@ sha256sums=('SKIP'
             'cbc785aab8d6211f2e12db87e28e6ee10302bde82236320991a1a85b099b9315'
             '7eab2dcde6a5b0e309e28480d90dd7475db8bdf8d0cfc0c07213899436d8d720'
             '77bc269851a5ef01db256a745b93bb191936a2c9018884f88a9a7b0d657741b9'
-            'c3cf7da6d76df20137198c867bc9a1eb6b425204569b4b945b48bc9a6d82d9e0')
+            'c37cb775a5a44b07b1b061b5d74a0f7f9cabe80758d9901580605a6c6372a93c'
+            '62f4ac120cb13bd5b083869510e40981c5d5125d51426600e813c573c89f086d'
+            '37107746081d6cf483f0679be7d9efdc98282fd302f14f47723c875b4ca065dd'
+            '1acb5b917daf8ad6b036253d7f9b35c242eca804d10381ca91e8732f2b2b6f0d'
+            'f436c83f922e3f1c61358c52ad1f85b57f497ad2e0a3954eb3bd798be1c4ba79'
+            'cfb01c80b2d1f3f3e27527c725d5d85e3887b44e843cf3864bef5039bc21dd69'
+            'e37db6ae028c38982bb4e99c7b7f1cfdc19f0f40c75a32d0472ba7b11e40b5ea'
+            'db1051ec6f06da77a4002d0c3e14151655ce2064a0ffa068ada59bc5a4697139'
+            'ebad641797c28fdd83381981f24a29b52154f6c0066d5c81529b9c4f35e5c2b7'
+            'd3d3005ac18393b70b355270fbb49cb2667dbb27f8f0e1b5b9a6d170f4709fc1'
+            '285b23238616a2376940175c32c1e83c1c0744ae74e7a6ac5a61c46b5fe12efa'
+            '247d0e82a4e6829d252ffe359927c61012aed8628d2095b96caa06a5665d6a1e'
+            '6489d703e6b23ffc17d670cff90e6894876123ed9577826599d9e7a69fb77b07'
+            '6eea4c63941a37ec08c39c671f8e9ee905138fbe601a61d3c68d3d69703e1bb7'
+            '2132fcbb3a2c68202104d349a8141ba7ea2b18420d3dba9c3f314afc083c9b32'
+            'cc096656f00aa15b1ff5110111b3a0860e3f933f5615f57a8ad5d1d6e274ef6d'
+            '97aaafa8ef9b78196d919521b87df940c87a83cd1a213a9faddc4fdf0095ef77'
+            '9e5731883147da21041ac71e51f6a927635a65b0865a81f84b6e22cbc9cfffe0'
+            'ecb5c45bc9386be5a39bfc3d363934da3d57a3ddaf5a6b7accd7bf10260d543a'
+            'a653da52b9300e3e16868c8f9351bd762eca01eca9eb7e2d242969ee12fdb5ec'
+            '1256997598244bb5594a47f88abdbb15612eab48e306cc4850cd714968c9b77f'
+            '81f1359911c40580843d40fd51afac3e1cd78c0cdd1515493e211504ad418269'
+            'ee9dbf141ea1bfc4af03cf900effdf48f0aeb439b8b0ec42c56fc16d4afff5bb'
+            'c9a839e726f89abaa0276257ee38fdc7cc9d24fae02d7a928d252b09d3cc0f72'
+            '4229dbd0be93b9be70019d67e332c23061049e7df6434b5d140fba7bbe662e44'
+            'b07cf0ac1642915591e00249595496908cb387a6dfebe2571036b0da03f990cf'
+            'e8f68de0193df5416dfe4d6d3f98dd1c4028067c17df6235f34d1a364862db07'
+            'a55338647a856fbdf0185cffce11cc7afceb572b4c3e4e8228ca0d600012dadc'
+            '787f9702270c5b961b36bd72d607c4b8c5dc0a5aa6bb5ebe779f3a453af41081'
+            '27956645c1c6b332beb0097954652eaaeace5c496367c353832439639144c6f4'
+            '26db1c11c60bd3bf7f7d8fc97ec2d053f933783c9f9caae885e4dca36fda116c'
+            'bb148c8d2ec5a8682f642c933765d46b80e882f279bdf7ea13ded8c00add1ed8'
+            'a42ffdadfe8dc35e7a2abe405956601fed756be12454b2f1bbdb21d47f913288'
+            '40856ff4f5a4fbf02c37e1297de0c32033dc4d6ff30c4472d2b6d78f81dbd1f5'
+            '1e07f892e577c5fe6fa9750fc01b16eeb7969470d60fe92befb1824be2d7915b'
+            '33feb8a4abbe71f258de94dc1486161fe204f8b56fa07ed30260754e243359b0'
+            '3fc54ec7c1120e8ccd7ee10273f5c4168a9bf0d343e2313dec884a42ea2a7254'
+            '053feecbe15d5eb054b04a300e2f8f7163a727d99def81e2be81375b508edd57'
+            '305173207dc98fdba15b4916f2379caa03db2c0c91533cefc139c93b6fab5390'
+            'd5ef479dc23786b4bdb1262787701c0450b5856e4f0344319f6ef077c25d7a38'
+            'fa886c8bc1fe9f6a109cdcd5cfb2e51ee954b0050a2d1807414f7e705c7d9b67'
+            '4b508b50bc57ebe7a10084ba1191665d722dc1925586fbff82395d2c17f560f5'
+            '72e187259382af55c35914bd9830df308921888cde9779077040d79da0ce8c2d'
+            '45bf92f0fe660cb42ca58d0e15fe8204423d05a14854e87445dd75f0ef5782ef'
+            '6ac5aed3ab74fedec04e9393f50e348d69a42cd7df2bfc534e7dd037176e9780'
+            '4eb48ea7f82358ae376a621b8c31d031f0145ec06e60cc8cab37118212f9375f'
+            'b79bf6216191c34742bfa8b9e0f4dfbde3074b0fbf1c1aaa2e80ab3b112aeb87'
+            'c9ef75fb48fdc74f71d65e695b0d62b51c358b3e3a26afa9a77cf446b1060e85'
+            'eb3dad3635b649390680cc8dbf90c95341534fdfe6a72a75d1eef2081625a07c'
+            'b0bdf1208c8b607af22edf7ae234cf5f080809daa3bb3cd3a693a5afdc5248ed'
+            '40f683e5a3c0b2566403cd5f20b37270702532a77a7540a02e2e8d1e1e6e3a93'
+            'bf4e3a1ac3b107675b3f122a92f18cf5c7404e831542982ef10736d3ddda19f0'
+            '7677813b275daa2ceb367f0bf33e1504f9af437b413e9849c311d39449837cfb'
+            'b246b3d09c2366ff8aa781cea444d176abd9f328c62ad2a3438213c3f43e6d10'
+            'ac8eaca294a2fc1876a109190eb1abe9270e2bb76f6a67732b2f84ed3e3ab14e'
+            '2101846e85c5d2da6488b4af426c8b224fbbac926edc29cf0a5e5a3c49b79b8a'
+            'ef972580855a25df65132e100f3d3757349ad8274b1b89ffc40eb2b35425a5b3'
+            'fb73d73d7f29c66e33a5c64f666ff6b9b06b29b22cbe05483e0fc5c86dfa5777'
+            'ded467d04de6964238e38d4c3fab33165ac132f762ca6f35b13d64d1174c38ce'
+            'e766769c9d40c379f6dec98f92c5949c282d2ef9f465e1dab3f2140842cc60b5'
+            '765b7cd7874d96408e8e21164338c3f0c2a788ac67fe337d5c9a440e71769321'
+            'a4b29819207ea515fe144598c8142e2f322b1785138c47e5822867920a223b61'
+            '99a8426b8dddf88f28646d8b2f4c0ddf0c1aed9c2c9d448dfe16842c207b7e1d'
+            '1b449f7c241b4d128f0fca0f37f770b87e63eed17b25f062fde311ae6373b3bc'
+            '17667b5f504db05809647dd744c128ef4d4f85ee334722f8c4f78bad4343aee9'
+            '47f4076d4f9885ccd2ec4eed15a51fc8741be1eb61416f9a94ffbe3cb810d225'
+            'b8da1bb2cea1b1e0c6ca94d7dfb3e5dcceee765d7abbcafba3f1f7e37d13b764'
+            'e89ce4bc8a857349ec0f6423a75dea83a7962c5d4261594ab6ba5f45ad0c4c90'
+            'c23e92f0d88c9bf0748ff25cb7bf61e39db259408cabe5e77c268ec59dc20aee'
+            '97005f7cc5c4b6f1c209e8aaf7b76d7dd8a1a11c501644c8181d3e00f1d26b0a'
+            '0ac66c1c1c0da987ccd5cc730d2e4b58b948adc1c3a7e7843a2eebe95d9fd7e3'
+            '97be69bc7b9ad03cdac3aec254a8012666184eb6c895d30c69e421e9bea7ea9f'
+            'c1a9a4d911ea5f051c86370cb9da0158b467675848f89459861c0cba34ca1ec0'
+            '73869a3ccb9596669fb52909a60e08c69e19bd87f8b85245d3a05f84bf779238'
+            'f5a34a69711c2c9409fea472b59f881c5049d86143126b64bd65d67ad34718c7'
+            'e7f34418acab5ec02386fe0cabf162b33422cec24714750bf5f2651dcc733064'
+            '8e58088df4fd54ecc77bbde86437b6287ee32321984690e589c2c81cf19431c3'
+            '2a939037b7954ea779528fa06d5cb644a5b458f81d6e07a55b9f2249c332004a'
+            '16c9c04b66cdec6c14889a38a8c8215da7796ad138f9a3040f70ce57e625f717'
+            'f49325bec399ce2a232f03c49e3ef6b8bc19f2369d808d8a2cec9f41a3a788f7'
+            '45e728880e17ac49732fcd7c8fc617301f844fb3ce004ad8af1c96f98f2c497f'
+            'efba84b2e2e418f4f6b4fd726459ee5b33b6fc517820f1c56ff61193a5568a52'
+            '2bc4c20d5a354045cbdc76c1a16bdd2b7565d77cd0f7120665cb464f16fe3225'
+            '494af7fcebf4553cf86c8dcd844f51e507eb95f5f6e67fbccbf69bdd18e0d9f1'
+            '309a51c51994b16d35ce770049ccdfd0f29c85eefada11545265e6dd4580bbd7'
+            'c1a759d55bdf9f32d6814f095983b73279de6dfcc568201c68fa5fdf9c44bf6a'
+            'd71be2779c0d218c19b33c2e04c02071b97a2f6486df50831c79e02ac7adeff2'
+            '3ca980ad65c71d081afa95273b376185fd43cee49b1e0a2d29c9515ceb5b22b3'
+            '99134d18c3dd925e4b071af2987140fae62d2795ba3047dcb9f75d6eff53e92f'
+            'fe4495c6588476429035c9309f39e51bf32b773c2b3ea5e437bed88b7802861b'
+            '834dffc18a1648edd1758808fa52ec03b0de68297f1931dff21e76fbe7e2938e'
+            '04065e62999311059f9bd8a4b050546cab31e4bb1bf38a2feb1e9d9fc1edc664'
+            '22a4a07f473b52a3b079e4cfd0334840f267fbeeea450b7f8e2161bc86270c1f'
+            '1987538349aaf9c9a33893eab46a17753617f3411b5eba34ccb072468f0c2956'
+            'cb477863c2621be8273c0356c36e396a4b255bacf4aa59843e1950b396dd4c60'
+            '4367a4c0f6c0136dcb0d212ebb3dd900ab29bdf95f32b92121cf0afd9ec2934c'
+            'f9cb6a4159cb6d92a30a74bb5bb34bf3b15674c6284370affcc1d504eaf22e2d'
+            'ecae5e82e601905cd144fb9f542b68ce6c11f7b3b492e788bb6528d51212a1ce'
+            'a14f1be6b726545180bdb474a9a1e27d9f9795492652f89f7e7c06284f0915db'
+            'fb3f3cab015072c71fc0b0ea168c5f088807063343850a1d1f1ae5459100d321'
+            '196cfc44bac33d4203cc74bd3ecf7e67273303745575cb4480cce999f110554e'
+            'af98e889736fa56f2aded2a5e43c15442f7ae55cce3be4d401d58b6ea983ecde'
+            'd7e7ef4433e841f0a4ea6d57a8c391b5d4b975818f834b56080b642a32c670ee'
+            '251e39abafa41ce2075260ef25d7e06b45bc4bf46d56b755605da26c832c1712'
+            'a7f1021d4c52ede4bfc581163ce99d0258d13c74f9c1a37e0a1e8f1d9af4a91f'
+            '84fa209bdef4b8408a942899672245b02fed64ffee280e2813809455dedf6ba9'
+            '028f0016882b99813bd6f6973b8f627820a7b164e4532c5e2a0949a0c1d98731'
+            'a99acf5a25aad11de1cde46ee98e978f276791575a012d005e6fd4592f6fa12c'
+            '0e492cbdca9c22730c01dcadd49a87eb631a58f00d31a5a6291e4ca6900dc4c6'
+            '58b4d42fa7d54d32cbb5fc0bd026bb65b1eb669c7aaa7c62d44b2ee1bd4defe0'
+            'db8ab7f59f89f1eed6e98a3d949e2521c9c4872b03f240bb432b8c9ed12dfe46'
+            '568d2c258cfe3607f28f1d9c4e4c8c6b44aa3d3abc3f273ae34449eed64bd75f'
+            'c9044f51a22464dc81d7dc488aaf40f66619e9bb3fd35b411de039cf64edd34f'
+            'f2d4feec71c06ed0105ed826b1197805bdad6ec621df83d985df69a89ffdce16'
+            '52788698af92b663e4ef6264326af665442d5f7ae417cf40a779fd960d43a603'
+            '6a33f5ace7461330560877cb2a06a64d7890cda2167adb9c351072f7fe3406a3'
+            'e195727c506e341a847754984c58f7e299b08154d148523b59dd6109330f84bc'
+            'ec113a36bebcd1972d0216d17ac72b1fe81a4bdcea84e3f5c8f25b02c5d8124e'
+            'e20b45123df8555087cb183a6d4c70985606420c51d1484594ff94c681a1365e'
+            '3dde13488a07fcab34fd0d31435e34d1a01f8d8068cd9c6bb61de2977426f967'
+            '6cd2a1a0015421f1af64a084d25b0172695be7226e0b6aa6eb2f3d5717ee18a4'
+            '0b0501e6b139a0f918cad22aaf8e17764c285c5fde72620df430ccb1db2cb361'
+            'c289b9e08277d968b1e06d57d53e05fb75c81565820ae21202c300416095f77c'
+            '0244e91733a2eb44641d30c3f85d677fa830b9146997d630dd35f820113bd40b'
+            '294acac780e258492c5b0ab215024ba0edcd2702c3cc96708e0fe105213f2b68')
 
 _backports=(
 	# grub-mkconfig: Use portable "command -v" to detect installed programs
@@ -309,6 +555,11 @@ prepare() {
 		git log --oneline -1 "${_c}"
 		git cherry-pick -n "${_c}"
 	done
+
+	echo "Run bootstrap..."
+	./bootstrap \
+		--gnulib-srcdir="${srcdir}/gnulib/" \
+		--no-git
 
 	echo "Patches from debian..."
 	patch -Np1 -i "${srcdir}/debian-olpc-prefix-hack.patch"
@@ -407,12 +658,134 @@ prepare() {
 	patch -Np1 -i "${srcdir}/debian-bootp-alloc.patch"
 	patch -Np1 -i "${srcdir}/debian-unix-config-overflow.patch"
 	patch -Np1 -i "${srcdir}/debian-deviceiter-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-osdep-exec-avoid-atexit-when-child-exits.patch"
+	patch -Np1 -i "${srcdir}/debian-grub-install-backup-and-restore.patch"
+	patch -Np1 -i "${srcdir}/debian-tftp-roll-over-block-counter.patch"
+	patch -Np1 -i "${srcdir}/debian-mdraid1x-linux-gcc-10.patch"
+	patch -Np1 -i "${srcdir}/debian-zfs-gcc-10.patch"
+	patch -Np1 -i "${srcdir}/debian-uefi-firmware-efivarfs.patch"
+	patch -Np1 -i "${srcdir}/debian-grub-install-inverted-nls-test.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-001-verifiers-Move-verifiers-API-to-kernel-image.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-002-kern-Add-lockdown-support.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-003-kern-lockdown-Set-a-variable-if-the-GRUB-is-locked-down.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-004-efi-Lockdown-the-GRUB-when-the-UEFI-Secure-Boot-is-enabled.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-005-efi-Use-grub_is_lockdown-instead-of-hardcoding-a-disabled-modules-list.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-006-acpi-Don-t-register-the-acpi-command-when-locked-down.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-007-mmap-Don-t-register-cutmem-and-badram-commands-when-lockdown-is-enforced.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-008-commands-Restrict-commands-that-can-load-BIOS-or-DT-blobs-when-locked-down.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-009-commands-setpci-Restrict-setpci-command-when-locked-down.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-010-commands-hdparm-Restrict-hdparm-command-when-locked-down.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-011-gdb-Restrict-GDB-access-when-locked-down.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-012-loader-xnu-Don-t-allow-loading-extension-and-packages-when-locked-down.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-013-docs-Document-the-cutmem-command.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-014-dl-Only-allow-unloading-modules-that-are-not-dependencies.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-015-usb-Avoid-possible-out-of-bound-accesses-caused-by-malicious-devices.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-016-mmap-Fix-memory-leak-when-iterating-over-mapped-memory.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-017-net-net-Fix-possible-dereference-to-of-a-NULL-pointer.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-018-net-tftp-Fix-dangling-memory-pointer.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-019-kern-parser-Fix-resource-leak-if-argc-0.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-020-kern-efi-Fix-memory-leak-on-failure.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-021-kern-efi-mm-Fix-possible-NULL-pointer-dereference.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-022-gnulib-regexec-Resolve-unused-variable.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-023-gnulib-regcomp-Fix-uninitialized-token-structure.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-024-gnulib-argp-help-Fix-dereference-of-a-possibly-NULL-state.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-025-gnulib-regexec-Fix-possible-null-dereference.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-026-gnulib-regcomp-Fix-uninitialized-re_token.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-027-io-lzopio-Resolve-unnecessary-self-assignment-errors.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-028-zstd-Initialize-seq_t-structure-fully.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-029-kern-partition-Check-for-NULL-before-dereferencing-input-string.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-030-disk-ldm-Make-sure-comp-data-is-freed-before-exiting-from-make_vg.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-031-disk-ldm-If-failed-then-free-vg-variable-too.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-032-disk-ldm-Fix-memory-leak-on-uninserted-lv-references.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-033-disk-cryptodisk-Fix-potential-integer-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-034-hfsplus-Check-that-the-volume-name-length-is-valid.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-035-zfs-Fix-possible-negative-shift-operation.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-036-zfs-Fix-resource-leaks-while-constructing-path.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-037-zfs-Fix-possible-integer-overflows.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-038-zfsinfo-Correct-a-check-for-error-allocating-memory.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-039-affs-Fix-memory-leaks.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-040-libgcrypt-mpi-Fix-possible-unintended-sign-extension.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-041-libgcrypt-mpi-Fix-possible-NULL-dereference.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-042-syslinux-Fix-memory-leak-while-parsing.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-043-normal-completion-Fix-leaking-of-memory-when-processing-a-completion.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-044-commands-hashsum-Fix-a-memory-leak.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-045-video-efi_gop-Remove-unnecessary-return-value-of-grub_video_gop_fill_mode_info.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-046-video-fb-fbfill-Fix-potential-integer-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-047-video-fb-video_fb-Fix-multiple-integer-overflows.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-048-video-fb-video_fb-Fix-possible-integer-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-049-video-readers-jpeg-Test-for-an-invalid-next-marker-reference-from-a-jpeg-file.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-050-gfxmenu-gui_list-Remove-code-that-coverity-is-flagging-as-dead.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-051-loader-bsd-Check-for-NULL-arg-up-front.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-052-loader-xnu-Fix-memory-leak.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-053-loader-xnu-Free-driverkey-data-when-an-error-is-detected-in-grub_xnu_writetree_toheap.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-054-loader-xnu-Check-if-pointer-is-NULL-before-using-it.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-055-util-grub-install-Fix-NULL-pointer-dereferences.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-056-util-grub-editenv-Fix-incorrect-casting-of-a-signed-value.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-057-util-glue-efi-Fix-incorrect-use-of-a-possibly-negative-value.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-058-script-execute-Fix-NULL-dereference-in-grub_script_execute_cmdline.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-059-commands-ls-Require-device_name-is-not-NULL-before-printing.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-060-script-execute-Avoid-crash-when-using-outside-a-function-scope.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-061-lib-arg-Block-repeated-short-options-that-require-an-argument.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-062-script-execute-Don-t-crash-on-a-for-loop-with-no-items.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-063-commands-menuentry-Fix-quoting-in-setparams_prefix.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-064-kern-misc-Always-set-end-in-grub_strtoull.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-065-video-readers-jpeg-Catch-files-with-unsupported-quantization-or-Huffman-tables.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-066-video-readers-jpeg-Catch-OOB-reads-writes-in-grub_jpeg_decode_du.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-067-video-readers-jpeg-Don-t-decode-data-before-start-of-stream.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-068-term-gfxterm-Don-t-set-up-a-font-with-glyphs-that-are-too-big.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-069-fs-fshelp-Catch-impermissibly-large-block-sizes-in-read-helper.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-070-fs-hfsplus-Don-t-fetch-a-key-beyond-the-end-of-the-node.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-071-fs-hfsplus-Don-t-use-uninitialized-data-on-corrupt-filesystems.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-072-fs-hfs-Disable-under-lockdown.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-073-fs-sfs-Fix-over-read-of-root-object-name.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-074-fs-jfs-Do-not-move-to-leaf-level-if-name-length-is-negative.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-075-fs-jfs-Limit-the-extents-that-getblk-can-consider.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-076-fs-jfs-Catch-infinite-recursion.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-077-fs-nilfs2-Reject-too-large-keys.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-078-fs-nilfs2-Don-t-search-children-if-provided-number-is-too-large.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-079-fs-nilfs2-Properly-bail-on-errors-in-grub_nilfs2_btree_node_lookup.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-080-io-gzio-Bail-if-gzio-tl-td-is-NULL.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-081-io-gzio-Add-init_dynamic_block-clean-up-if-unpacking-codes-fails.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-082-io-gzio-Catch-missing-values-in-huft_build-and-bail.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-083-io-gzio-Zero-gzio-tl-td-in-init_dynamic_block-if-huft_build-fails.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-084-disk-lvm-Don-t-go-beyond-the-end-of-the-data-we-read-from-disk.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-085-disk-lvm-Don-t-blast-past-the-end-of-the-circular-metadata-buffer.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-086-disk-lvm-Bail-on-missing-PV-list.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-087-disk-lvm-Do-not-crash-if-an-expected-string-is-not-found.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-088-disk-lvm-Do-not-overread-metadata.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-089-disk-lvm-Sanitize-rlocn-offset-to-prevent-wild-read.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-090-disk-lvm-Do-not-allow-a-LV-to-be-it-s-own-segment-s-node-s-LV.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-091-fs-btrfs-Validate-the-number-of-stripes-parities-in-RAID5-6.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-092-fs-btrfs-Squash-some-uninitialized-reads.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-093-kern-parser-Fix-a-memory-leak.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-094-kern-parser-Introduce-process_char-helper.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-095-kern-parser-Introduce-terminate_arg-helper.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-096-kern-parser-Refactor-grub_parser_split_cmdline-cleanup.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-097-kern-buffer-Add-variable-sized-heap-buffer.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-098-kern-parser-Fix-a-stack-buffer-overflow.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-099-kern-efi-Add-initial-stack-protector-implementation.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-100-util-mkimage-Remove-unused-code-to-add-BSS-section.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-101-util-mkimage-Use-grub_host_to_target32-instead-of-grub_cpu_to_le32.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-102-util-mkimage-Always-use-grub_host_to_target32-to-initialize-PE-stack-and-heap-stuff.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-103-util-mkimage-Unify-more-of-the-PE32-and-PE32-header-set-up.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-104-util-mkimage-Reorder-PE-optional-header-fields-set-up.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-105-util-mkimage-Improve-data_size-value-calculation.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-106-util-mkimage-Refactor-section-setup-to-use-a-helper.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-107-util-mkimage-Add-an-option-to-import-SBAT-metadata-into-a-.sbat-section.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-108-grub-install-common-Add-sbat-option.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-109-kern-misc-Split-parse_printf_args-into-format-parsing-and-va_list-handling.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-110-kern-misc-Add-STRING-type-for-internal-printf-format-handling.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-111-kern-misc-Add-function-to-check-printf-format-against-expected-format.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-112-gfxmenu-gui-Check-printf-format-in-the-gui_progress_bar-and-gui_label.patch"
+	patch -Np1 -i "${srcdir}/debian-2021-02-security-113-kern-mm-Fix-grub_debug_calloc-compilation-error.patch"
+	patch -Np1 -i "${srcdir}/debian-pc-verifiers-module.patch"
+	patch -Np1 -i "${srcdir}/debian-enable_shim_lock_i386_efi.patch"
+	patch -Np1 -i "${srcdir}/debian-debug_verifiers.patch"
+	patch -Np1 -i "${srcdir}/debian-mkimage-fix-section-sizes.patch"
+	patch -Np1 -i "${srcdir}/debian-tpm-unknown-error-non-fatal.patch"
 
 	echo "Revert patch that handle the Debian kernel version numbers..."
 	patch -Rp1 -i "${srcdir}/debian-dpkg-version-comparison.patch"
-
-	echo "Fix output a menu entry for firmware setup on UEFI FastBoot..."
-	patch -p1 -i "${srcdir}/0001-Fix-Output-a-menu-entry-for-firmware-setup-on-UEFI-F.patch"
 
 	echo "Patch to enable GRUB_COLOR_* variables in grub-mkconfig..."
 	## Based on http://lists.gnu.org/archive/html/grub-devel/2012-02/msg00021.html
@@ -420,9 +793,6 @@ prepare() {
 
 	echo "Patch to detect of Arch Linux initramfs images by grub-mkconfig..."
         patch -Np1 -i "${srcdir}/0002-10_linux-detect-archlinux-initramfs.patch"
-
-	echo "Patch to NLS installation..."
-	patch -Np1 -i "${srcdir}/0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch"
 
 	echo "Fix DejaVuSans.ttf location so that grub-mkfont can create *.pf2 files for starfield theme..."
 	sed 's|/usr/share/fonts/dejavu|/usr/share/fonts/dejavu /usr/share/fonts/TTF|g' -i "configure.ac"
