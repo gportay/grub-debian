@@ -34,7 +34,7 @@ import: PKGBUILD.import
 .PHONY: PKGBUILD.import
 .SILENT: PKGBUILD.import
 PKGBUILD.import: SHELL = /bin/bash
-PKGBUILD.import: PKGBUILD.backport debian/series
+PKGBUILD.import: archlinux/PKGBUILD debian/series
 	while read -r patch; do \
 		$(MAKE) --silent debian/$$patch || exit 1; \
 		ln -sf debian/$$patch debian-$${patch//\//-} || exit 1; \
@@ -43,13 +43,13 @@ PKGBUILD.import: PKGBUILD.backport debian/series
 	echo "pkgver=\$${_pkgver/-/}" >>$@.tmp
 	echo "pkgrel=$(RELEASE)" >>$@.tmp
 	echo "epoch=2" >>$@.tmp
-	sed -n -e '/^source=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' PKGBUILD.backport >>$@.tmp
+	sed -n -e '/^source=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' archlinux/PKGBUILD >>$@.tmp
 	while read -r patch; do \
 		printf '        '"'debian-$${patch//\//-}'"'\n' >>$@.tmp; \
 	done <debian/series
 	sed -i -e '$$s,$$,),' $@.tmp
 	printf '\n' >>$@.tmp
-	sed -n -e '/^sha256sums=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' PKGBUILD.backport >>$@.tmp
+	sed -n -e '/^sha256sums=/,/\(^$$\|)$$\)/{/$$/s,),,;p}' archlinux/PKGBUILD >>$@.tmp
 	while read -r patch; do \
 		printf '            '"'$$(sha256sum "debian-$${patch//\//-}" | awk '{ print $$1 }' )'"'\n' >>$@.tmp; \
 	done <debian/series
@@ -64,24 +64,20 @@ PKGBUILD.import: PKGBUILD.backport debian/series
 	printf '\n' >>$@.tmp
 	mv $@.tmp $@
 
-PKGBUILD.backport grub.default.backport:
-
 .PHONY: backport
-backport: PKGBUILD.backport grub.default.backport
+backport: archlinux/PKGBUILD archlinux/grub.default
 	for file in $^; do \
-		$(DIFFTOOL) $$file $${file%.backport}; \
+		$(DIFFTOOL) $$file $${file#archlinux/}; \
 	done
 	$(MAKE) updpkgsums
 
 .PHONY: clean
 clean:
-	rm -f PKGBUILD.backport PKGBUILD.import debian/series
+	rm -Rf archlinux/ PKGBUILD.import debian/series
 
-%.backport:
-	$(MAKE) wget_$*.backport
-
-wget_%.backport:
-	wget https://raw.githubusercontent.com/archlinux/svntogit-packages/master/grub/repos/core-x86_64/$* -O $*.backport
+archlinux/%:
+	mkdir -p archlinux/$(*D)
+	wget https://raw.githubusercontent.com/archlinux/svntogit-packages/master/grub/repos/core-x86_64/$* -O archlinux/$*
 
 debian/%:
 	mkdir -p debian/$(*D)
