@@ -268,4 +268,3 @@ pkgbase = grub-debian
 	sha256sums = c3cf7da6d76df20137198c867bc9a1eb6b425204569b4b945b48bc9a6d82d9e0
 
 pkgname = grub-debian
-
